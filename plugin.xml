@@ -1,45 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-   id="com.vessel.abplugin"
-   version="0.1.0">
-   <name>VesselABPlugin</name>
-   <description>Vessel A/B Testing plugin</description>
-   <license>MIT</license>
-   <keywords>phonegap,a/b testing</keywords>
+   xmlns:gap="http://phonegap.com/ns/1.0"
+ id="com.vessel.abplugin"
+ version="0.1.0">
+ <name>VesselABPlugin</name>
+ <description>Vessel A/B Testing plugin</description>
+ <license>MIT</license>
+ <keywords>phonegap,a/b testing</keywords>
 
-   <gap:plugin name="com.vessel.abplugin" />
-   <js-module src="www/vesselab.js" name="VesselABPlugin">
-    <clobbers target="window.vesselab" />
+ <gap:plugin name="com.vessel.abplugin" />
+ <js-module src="www/vesselab.js" name="VesselABPlugin">
+  <clobbers target="window.vesselab" />
 </js-module>
 
 <!-- android -->
 <platform name="android">
-    <config-file target="res/xml/config.xml" parent="/*">
-        <feature name="VesselABPlugin">
-            <param name="android-package" value="com.vessel.abplugin.VesselABPlugin"/>
-        </feature>
-    </config-file>
+  <config-file target="res/xml/config.xml" parent="/*">
+    <feature name="VesselABPlugin">
+      <param name="android-package" value="com.vessel.abplugin.VesselABPlugin"/>
+    </feature>
+  </config-file>
 
-    <source-file src="libs/android/vesselsdk.jar" target-dir="libs" />   
-    <source-file src="src/android/VesselABPlugin.java" target-dir="src/com/vessel/abplugin" />      
+  <source-file src="libs/android/vesselsdk.jar" target-dir="libs" />   
+  <source-file src="src/android/VesselABPlugin.java" target-dir="src/com/vessel/abplugin" />      
 </platform>    
 
 <!-- ios -->
 
 <platform name="ios">
-    <config-file target="config.xml" parent="/*">
-        <feature name="VesselABPlugin">
-            <param name="ios-package" value="VesselPlugin"/>
-        </feature>
-    </config-file>
-    <framework src="libsqlite3.dylib" />
-    <framework src="libs/ios/Vessel.framework" />
+  <config-file target="config.xml" parent="/*">
+    <feature name="VesselABPlugin">
+      <param name="ios-package" value="VesselPlugin"/>
+    </feature>
+  </config-file>
+  <framework src="libsqlite3.dylib" />
+  <framework src="libs/ios/Vessel.framework" />
 
 
 
-    <header-file src="src/ios/VesselPlugin.h"/>
-    <source-file src="src/ios/VesselPlugin.m"/>
+  <header-file src="src/ios/VesselPlugin.h"/>
+  <source-file src="src/ios/VesselPlugin.m"/>
 </platform>
 
 </plugin>
