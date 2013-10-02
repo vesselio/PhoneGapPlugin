@@ -24,7 +24,7 @@
 */
 @implementation VesselKD
 
-- (void)pluginInitialize {
+ - (void)pluginInitialize {
     [super pluginInitialize];
     NSLog(@"Hello World Wurst, init");
 }
@@ -41,17 +41,17 @@
 - (void)backgroundJobTest:(CDVInvokedUrlCommand*)command {
     NSLog(@"Wurst, backgroundJobTest");
     [self.commandDelegate runInBackground:^{
-	NSString* payload = nil;
-	
+       NSString* payload = nil;
+       
 	// Some blocking logic...
-	NSLog(@"Wurst, sleep for 5s");
-	[NSThread sleepForTimeInterval:5.0];
-	NSLog(@"Wurst, sleep done");
-	
-	CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:payload];
+       NSLog(@"Wurst, sleep for 5s");
+       [NSThread sleepForTimeInterval:5.0];
+       NSLog(@"Wurst, sleep done");
+       
+       CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:payload];
 	// The sendPluginResult method is thread-safe.
-	[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-    }];
+       [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+   }];
     NSLog(@"return from backgroundJobTest");
 }
 
@@ -158,6 +158,16 @@
 - (void)setABListener:(CDVInvokedUrlCommand*)command
 {
 
+    CDVPluginResult* pluginResult = nil;
+    [VesselAB getTestWithSuccessBlock:^(NSString *testName, VesselABTestVariation variation) {
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:value];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+
+    } failureBlock:^ {
+      pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"checkpointVisited was null"];
+
+  }];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 - (void)getValue:(CDVInvokedUrlCommand*)command
