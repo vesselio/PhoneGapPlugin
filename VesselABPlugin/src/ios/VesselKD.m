@@ -162,7 +162,13 @@
 
 - (void)getValue:(CDVInvokedUrlCommand*)command
 {
+    CDVPluginResult* pluginResult = nil;
+    NSString* key = [command.arguments objectAtIndex:0];
+    NSString* defaultValue = [command.arguments objectAtIndex:1];
+    NSString* value = [VesselAB valueForVariationVariable:key defaultValue:defaultValue];
 
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:value];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 
