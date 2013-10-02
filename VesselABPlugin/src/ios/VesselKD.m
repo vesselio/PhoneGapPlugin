@@ -158,18 +158,37 @@
 - (void)setABListener:(CDVInvokedUrlCommand*)command
 {
     __block  NSString *testVariation = nil;
-
     __block CDVPluginResult* pluginResult = nil;
+    
     [VesselAB getTestWithSuccessBlock:^(NSString *testName, VesselABTestVariation variation) {
         testVariation = [self formatTypeToString:variation];
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:testVariation];
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            //Call your function or whatever work that needs to be done on a background thread
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:testVariation];
+                [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+                
+            });
+        });
+        
     } failureBlock:^ {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Test is not available"];
-
-  }];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            //Call your function or whatever work that needs to be done on a background thread
+            dispatch_async(dispatch_get_main_queue(), ^(void) {
+                
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Test is not available"];
+                [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+                
+            });
+        });
+        
+    }];
 }
+
 
 - (void)getValue:(CDVInvokedUrlCommand*)command
 {
