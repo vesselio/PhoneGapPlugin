@@ -6,7 +6,7 @@
  version="0.1.0">
  <name>VesselABPlugin</name>
  <description>Vessel mobile A/B Testing plugin</description>
- <license>MIT</license>
+ <license>Apache</license>
  <keywords>phonegap,a/b testing</keywords>
 
  <gap:plugin name="com.vessel.abplugin" />
