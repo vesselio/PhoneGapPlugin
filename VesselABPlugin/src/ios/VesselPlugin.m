@@ -26,51 +26,26 @@
 
  - (void)pluginInitialize {
     [super pluginInitialize];
-    NSLog(@"Hello World Wurst, init");
+    NSLog(@"VesselSDK plugin");
 }
 
-- (void)echoTest:(CDVInvokedUrlCommand*)command {
-    NSLog(@"Wurst, command");
-    id message = [command.arguments objectAtIndex:0];
-    NSLog(@"Wurst, parameter <%@>", message);
-    CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:message];
-
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-}
-
-- (void)backgroundJobTest:(CDVInvokedUrlCommand*)command {
-    NSLog(@"Wurst, backgroundJobTest");
-    [self.commandDelegate runInBackground:^{
-       NSString* payload = nil;
-
-	// Some blocking logic...
-       NSLog(@"Wurst, sleep for 5s");
-       [NSThread sleepForTimeInterval:5.0];
-       NSLog(@"Wurst, sleep done");
-
-       CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:payload];
-	// The sendPluginResult method is thread-safe.
-       [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-   }];
-    NSLog(@"return from backgroundJobTest");
-}
 
 - (void)onAppTerminate {
-    NSLog(@"Wurst, onAppTerminate");
+    NSLog(@"VesselSDK, onAppTerminate");
 
 }
 
 - (void)onMemoryWarning {
-    NSLog(@"Wurst, onMemoryWarning");
+    NSLog(@"VesselSDK, onMemoryWarning");
 
 }
 
 - (void)onReset {
-    NSLog(@"Wurst, onReset");
+    NSLog(@"VesselSDK, onReset");
 }
 
 - (void)dispose {
-    NSLog(@"Wurst, dispose");
+    NSLog(@"VesselSDK, dispose");
 }
 
 - (void)initialize:(CDVInvokedUrlCommand*)command

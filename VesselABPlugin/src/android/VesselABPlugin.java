@@ -61,20 +61,27 @@ public class VesselABPlugin extends CordovaPlugin {
                 return true;
             }else if ("setABListener".equals(action)) {
                 this.cordova.setActivityResultCallback(this);
-                VesselAB.setABListener(new ABListener() {
+                this.cordova.getThreadPool().execute(new Runnable() {
 
                     @Override
-                    public void testNotAvailable(TestVariation arg0) {
-                        callbackContext.success(arg0.toString());
-                    }
+                    public void run() {
+                        VesselAB.setABListener(new ABListener() {
 
-                    @Override
-                    public void testLoading() {
-                    }
+                            @Override
+                            public void testNotAvailable(TestVariation arg0) {
+                                callbackContext.success(arg0.toString());
+                            }
 
-                    @Override
-                    public void testLoaded(String testName, TestVariation testVariation) {
-                        callbackContext.success(testVariation.toString());
+                            @Override
+                            public void testLoading() {
+                            }
+
+                            @Override
+                            public void testLoaded(String testName, TestVariation testVariation) {
+                                callbackContext.success(testVariation.toString());
+
+                            }
+                        });
 
                     }
                 });
