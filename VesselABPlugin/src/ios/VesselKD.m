@@ -42,12 +42,12 @@
     NSLog(@"Wurst, backgroundJobTest");
     [self.commandDelegate runInBackground:^{
        NSString* payload = nil;
-       
+
 	// Some blocking logic...
        NSLog(@"Wurst, sleep for 5s");
        [NSThread sleepForTimeInterval:5.0];
        NSLog(@"Wurst, sleep done");
-       
+
        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:payload];
 	// The sendPluginResult method is thread-safe.
        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
@@ -157,14 +157,15 @@
 
 - (void)setABListener:(CDVInvokedUrlCommand*)command
 {
+    __block  NSString *testVariation = nil;
 
-    CDVPluginResult* pluginResult = nil;
+    __block CDVPluginResult* pluginResult = nil;
     [VesselAB getTestWithSuccessBlock:^(NSString *testName, VesselABTestVariation variation) {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:value];
+        testVariation = [self formatTypeToString:variation];
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:testVariation];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-
     } failureBlock:^ {
-      pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"checkpointVisited was null"];
+        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Test is not available"];
 
   }];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
@@ -181,5 +182,31 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
+
+- (NSString*)formatTypeToString:(VesselABTestVariation)formatType {
+    NSString *result = nil;
+
+    switch(formatType) {
+        case VesselABTestVariationA:
+            result = @"VesselABTestVariationA";
+            break;
+        case VesselABTestVariationB:
+            result = @"VesselABTestVariationB";
+            break;
+        case VesselABTestVariationC:
+            result = @"VesselABTestVariationC";
+            break;
+        case VesselABTestVariationD:
+            result = @"VesselABTestVariationD";
+            break;
+        case VesselABTestVariationE:
+            result = @"VesselABTestVariationE";
+            break;
+        default:
+            result = @"VesselABTestVariationUnknown";
+    }
+
+    return result;
+}
 
 @end
