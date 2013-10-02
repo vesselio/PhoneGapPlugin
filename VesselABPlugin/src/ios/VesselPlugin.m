@@ -17,12 +17,12 @@
  under the License.
  */
 
-#import "VesselKD.h"
+#import "VesselPlugin.h"
 #import <Vessel/Vessel.h>
 #import <Vessel/VesselAB.h>
 /* #import "CDV.h"
 */
-@implementation VesselKD
+@implementation VesselPlugin
 
  - (void)pluginInitialize {
     [super pluginInitialize];

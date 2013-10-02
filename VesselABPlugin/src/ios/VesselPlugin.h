@@ -2,7 +2,7 @@
 #import <Cordova/CDV.h>
 
 
-@interface VesselKD : CDVPlugin
+@interface VesselPlugin : CDVPlugin
 
 - (void)initialize:(CDVInvokedUrlCommand*)command;
 - (void)reloadTest:(CDVInvokedUrlCommand*)command;

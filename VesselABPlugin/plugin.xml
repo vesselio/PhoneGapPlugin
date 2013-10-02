@@ -30,7 +30,7 @@
 <platform name="ios">
     <config-file target="config.xml" parent="/*">
         <feature name="VesselABPlugin">
-            <param name="ios-package" value="VesselKD"/>
+            <param name="ios-package" value="VesselPlugin"/>
         </feature>
     </config-file>
     <framework src="libsqlite3.dylib" />
@@ -38,8 +38,8 @@
 
 
 
-    <header-file src="src/ios/VesselKD.h"/>
-    <source-file src="src/ios/VesselKD.m"/>
+    <header-file src="src/ios/VesselPlugin.h"/>
+    <source-file src="src/ios/VesselPlugin.m"/>
 </platform>
 
 </plugin>
