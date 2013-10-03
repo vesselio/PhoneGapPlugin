@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
-   xmlns:gap="http://phonegap.com/ns/1.0"
+ xmlns:gap="http://phonegap.com/ns/1.0"
  id="com.vessel.abplugin"
  version="0.1.0">
  <name>VesselABPlugin</name>
@@ -22,8 +22,13 @@
     </feature>
   </config-file>
 
-  <source-file src="libs/android/vesselsdk.jar" target-dir="libs" />   
-  <source-file src="src/android/VesselABPlugin.java" target-dir="src/com/vessel/abplugin" />      
+  <source-file src="src/android/VesselABPlugin.java" target-dir="src/com/vessel/abplugin" />    
+  <info>
+    Register your application at Vessel.io and download VesselSDK. 
+    Unzip it and copy paste in libs folder.
+    More details are at
+    http://docs.vessel.io/getting-started/
+  </info>  
 </platform>    
 
 <!-- ios -->
@@ -38,9 +43,13 @@
   <framework src="libs/ios/Vessel.framework" />
 
 
-
   <header-file src="src/ios/VesselPlugin.h"/>
   <source-file src="src/ios/VesselPlugin.m"/>
+  <info>
+    Register your application at Vessel.io and download Vessel.Framework 
+    Unzip it and import in your XCode project. More details are at
+    http://docs.vessel.io/getting-started/
+  </info>
 </platform>
 
 </plugin>
