@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
- xmlns:gap="http://phonegap.com/ns/1.0"
- id="com.vessel.abplugin"
- version="0.1.0">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        id="com.vessel.abplugin"
+        version="0.1.0">
  <name>VesselABPlugin</name>
  <description>Vessel mobile A/B Testing plugin</description>
  <license>Apache</license>
  <keywords>phonegap,a/b testing</keywords>
 
- <gap:plugin name="com.vessel.abplugin" />
- <js-module src="www/vesselab.js" name="VesselABPlugin">
+<js-module src="www/vesselab.js" name="VesselABPlugin">
   <clobbers target="window.vesselab" />
 </js-module>
 
