@@ -2,13 +2,10 @@ package com.vessel.abplugin;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
-import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import android.app.Activity;
 import android.util.Log;
-import android.content.Intent;
 
 import com.vessel.VesselSDK;
 import com.vessel.VesselAB;
@@ -26,12 +23,17 @@ public class VesselABPlugin extends CordovaPlugin {
             Log.d("VesselSDK", "Action "+action);
 
             if ("initialize".equals(action)) {
-                String SECRET_KEY = args.getString(0);
+                final String SECRET_KEY = args.getString(0);
 
-                VesselSDK.initialize(cordova.getActivity().getApplicationContext(), SECRET_KEY);
-                callbackContext.success();
+                this.cordova.getThreadPool().execute(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        VesselSDK.initialize(cordova.getActivity().getApplicationContext(), SECRET_KEY);
+                        callbackContext.success();
+                    }
+                });
                 return true;
-
             }else if ("reloadTest".equals(action)) {
                 VesselAB.reloadTest();
                 callbackContext.success();
@@ -65,11 +67,11 @@ public class VesselABPlugin extends CordovaPlugin {
 
                     @Override
                     public void run() {
-                        VesselAB.setABListener(new ABListener() {
+                                        VesselAB.setABListener(new ABListener() {
 
                             @Override
-                            public void testNotAvailable(TestVariation arg0) {
-                                callbackContext.success(arg0.toString());
+                            public void testNotAvailable(final TestVariation testVariation) {
+                                callbackContext.success(testVariation.toString());
                             }
 
                             @Override
@@ -77,9 +79,8 @@ public class VesselABPlugin extends CordovaPlugin {
                             }
 
                             @Override
-                            public void testLoaded(String testName, TestVariation testVariation) {
+                            public void testLoaded(String testName, final TestVariation testVariation) {
                                 callbackContext.success(testVariation.toString());
-
                             }
                         });
 
