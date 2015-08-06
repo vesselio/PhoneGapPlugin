@@ -1,72 +1,86 @@
-Vessel A/B testing plugin for Phonegap
-==============
+Marketo PhoneGap – Plugin
 
-Welcome to Vessel phonegap plugin. Add this plugin to your project and start A/B Testing your app.
+	1.	Initialise Marketo Framework : To make sure that Marketo framework get initiated on app startup of your app add below code under “onDeviceReady: function()”. Also you can add this code to any of your own function.
 
-A simple use case would be:
+	@Syntax :
+    		marketo.initialize(
+                       function() { console.log("MarketoSDK Init done."); } ,
+                       function(error) { console.log("an error occurred:" + error); },
+                       'YOUR_MUNCHKIN_ID', 'YOUR_SECRET_KEY'
+                       );
 
-1. Landing Screen A/B test
-2. UI labels, colors A/B test
-3. app messaging A/B test
+	@ parameteres :
 
-Using the plugin
-Step 1: Register your application
-==============
-	1. Login to Vessel Command Center
-	2. Add your application get Vessel Secret Key
-
-Step 2: Initlize Vessel A/B plugin.
-==============
-
-After adding plugin open your main / index.html file and attach Event listener on "deviceready" method as follows
-
-document.addEventListener("deviceready", onDeviceReady, false);
-
-// Inside onDeviceReady initialize Vessel Plugin
-```
-function onDeviceReady() {
-    // Now safe to use the PhoneGap API
-
-    // Initialize Vessel A/B testing platform. You can simply initialize it once.
-    var YOUR_SECRET_KEY = 'YOUR_APP_KEY';
-    vesselab.initialize(
-            function(){console.log("VesselSDK Init done.");},
-            function(error){ console.log("an error occurred:" + error); },
-            YOUR_SECRET_KEY
-    );
-}
-```
-Step 3: Instruments A/B Tests
-==============
-Let's assume, you want to A/B Test landing screen then 
-
-//attach Event listener on "deviceready" method as follows
-document.addEventListener("deviceready", onDeviceReady, false);
-
-```
-function onDeviceReady() {
-
-    // Set Vessel AB listener, in other pages.
-    vesselab.setABListener(function(testVariation){
-
-            // Now test is available you can check which variation is looded 
-            // and decide 
-            console.log("Test is available");
-    
-        }, function(error){
-            console.log("Test is not available");
-
-            // Show default screen 
-    });
-}
-
-```
+	•	Success call back : set of extra instruction to be executed if Marketo framework got initialised successfully.  
+	•	Failure call back : set of extra instruction to be executed if Marketo framework got failed to initialise .
+	•	MUNCKIN ID : munchkin id which you received from Marketo at time of registration .
+	•	SECRET KEY : secrete key which you received from Marketo at time of registration .
 
 
+	1.	Add Lead  : To associate new Lead in Marketo server call this code to any of your own function.
 
-To learn more visit http://docs.vessel.io/getting-started/
+	@ Syntax :
+    		marketo.addlead(function(){console.log("MarketoSDK : Lead Added");},
+                                     function(error){ console.log("an error occurred:" + error); },
+                                     'Lead_JSON_String'
+                                     );
 
+	@ parameteres :
 
-##Resources:
-###[vessel.io](https://vessel.io/)
-###[License and Terms](https://www.vessel.io/tos/)
+	•	Success call back : set of extra instruction to be executed if Marketo framework got initialised successfully.  
+	•	Failure call back : set of extra instruction to be executed if Marketo framework got failed to initialise .
+	•	Lead Data : Lead data in Json string format ,
+		Sample Lead Data (with default attributes , you can add custom fields ):
+			 var lead = {
+                    				'firstName': 'frist name',
+                    				'lastName': 'last name',
+                    				'address': 'demo address',
+                    				'city': 'city',
+                    				'state': 'state',
+                    				'country': 'country',
+                    				'postalCode': 'postalCode',
+                    				'gender': 'gender',
+                    				'email': 'email',
+                    				'twitterId': 'twitterId',
+                    				'facebookId': 'facebookId',
+                    				'linkedInId': 'linkedInId',
+                    				'leadSource': 'leadSource',
+                    				'dateOfBirth': 'dateOfBirth',
+                    				'facebookProfileURL': 'facebookProfileURL',
+                    				'facebookPhotoURL': 'facebookPhotoURL'
+             				}
+
+	1.	Report Action  : To report new action in Marketo server call this code to any of your own function.
+
+	@ Syntax :
+    	marketo.reportaction(function(){console.log("MarketoSDK : New event sent ");},
+                                 function(error){ console.log("an error occurred:" + error); },
+                                 'custome_report_name','custome_report_data'
+                                 );
+
+	@ parameteres :
+
+	•	Success call back : set of extra instruction to be executed if Marketo framework got initialised successfully.  
+	•	Failure call back : set of extra instruction to be executed if Marketo framework got failed to initialise .
+	•	Action Name : Action name for the report.
+	•	Action Data : report data in Json string format ,
+		Sample report Data (with default attributes , you can add custom fields ):
+			var event = {
+                   				'Action Type':'push',
+                    				'Action Details':'event Details',
+                    				'Action Metric':'metric',
+                    				'Action Length':'length'
+            			       }
+
+	1.	Http Time Out  : To change default http timeout in Marketo sdk call this code to any of your own function.
+
+	@ Syntax :
+
+            marketo.settimeout(function(){console.log("MarketoSDK : Timeout Chnaged");},
+                            function(error){ console.log("an error occurred:" + error); }, 10 );
+
+	@ parameteres :
+
+	•	Success call back : set of extra instruction to be executed if Marketo framework got initialised successfully.  
+	•	Failure call back : set of extra instruction to be executed if Marketo framework got failed to initialise .
+	•	Timeout integer value  :  timeout Value in integer .
