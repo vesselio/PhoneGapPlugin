@@ -78,7 +78,7 @@ public boolean execute(String action, JSONArray args, CallbackContext _callbackC
 
         @Override
         public void run() {
-          marketo.associateLead(getLeaad(jsonObject));
+          marketo.associateLead(getLead(jsonObject));
           callbackContext.success();
         }
     });
@@ -163,7 +163,7 @@ private MarketoActionMetaData getMetadata(JSONObject json) {
   return actionMetaData;
 }
 
-private MarketoLead getLeaad(JSONObject object) {
+private MarketoLead getLead(JSONObject object) {
     MarketoLead lead = new MarketoLead();
   try {
     @SuppressWarnings("unchecked")
