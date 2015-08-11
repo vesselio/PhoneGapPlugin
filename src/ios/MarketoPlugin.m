@@ -20,16 +20,12 @@
 
 #import "MarketoPlugin.h"
 
-
-
-
 @implementation MarketoPlugin
 
 - (void)pluginInitialize {
     [super pluginInitialize];
     NSLog(@"MarketoSDK plugin");
 }
-
 
 - (void)onAppTerminate {
     NSLog(@"MarketoSDK, onAppTerminate");
@@ -49,6 +45,7 @@
     NSLog(@"MarketoSDK, dispose");
 }
 
+//if action is initialize then it will initialize the marketo SDK
 - (void)initialize:(CDVInvokedUrlCommand*)command
 {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -66,6 +63,7 @@
     });
 }
 
+//if action is resume then it will send the resume action to MarketoSDK
 - (void)resume:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
@@ -73,6 +71,7 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
+//if action is pause then it will send the pause action to MarketoSDK
 - (void)pause:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
@@ -81,6 +80,7 @@
 
 }
 
+//if action is settimeout then it will det the default time out to the value from json
 - (void) settimeoutinterval:(CDVInvokedUrlCommand*)command{
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         CDVPluginResult* pluginResult = nil;
@@ -96,6 +96,13 @@
     });
 
 }
+
+/**
+* reportaction is a method which will create a MarketoActionMetaData object
+* out of the JSONObject passed as a parameter
+*
+* @param JSONObject is a json data of Custom Action
+*/
 
 - (void) reportaction:(CDVInvokedUrlCommand*)command{
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -122,6 +129,12 @@
     });
 }
 
+/**
+* associatelead is a method which will create a MarketoLead object
+* out of the JSONObject passed as a parameter
+*
+* @param CDVInvokedUrlCommand contains json data related to lead
+*/
 - (void) associatelead:(CDVInvokedUrlCommand*)command{
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         CDVPluginResult* pluginResult = nil;
@@ -140,8 +153,4 @@
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     });
 }
-
-
-
-
 @end
