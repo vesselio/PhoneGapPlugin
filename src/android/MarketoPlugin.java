@@ -1,4 +1,4 @@
-package com.marketo.plugin;
+package src.com.marketo.plugin;
 
 import android.util.Log;
 import java.util.Iterator;
@@ -206,7 +206,6 @@ private MarketoLead getLeaad(JSONObject object) {
           lead.setCustomField(key, value);
         }
       }
-    }
   }catch (Exception e){
     e.printStackTrace();
   }
