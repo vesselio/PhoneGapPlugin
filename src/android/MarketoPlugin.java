@@ -205,7 +205,6 @@ private MarketoLead getLeaad(JSONObject object) {
         }else{
           lead.setCustomField(key, value);
         }
-      }
     }
   }catch (Exception e){
     e.printStackTrace();
