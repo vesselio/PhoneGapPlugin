@@ -100,6 +100,68 @@ var marketo = {
     },
 
     /**
+     * Call this method when user wants to remove secure signature
+     *
+     * @param success the message if successful
+     * @param fail the message if the action fails
+     */
+    removeSecureSignature: function (success, fail) {
+        return cordova.exec( success, fail,
+            "MarketoPlugin",
+            "removeSecureSignature", []);
+    },
+
+    /**
+     * Call this method when user wants to set the request's timeout
+     *
+     * @param success the message if successful
+     * @param fail the message if the action fails
+     * @param secureMode represents the secure signature information in Json format
+     */
+     setSecureSignature: function (success, fail, accessKey, signature, email, timestamp){
+      return cordova.exec(success, fail,
+        "MarketoPlugin",
+        "setSecureSignature", [accessKey, signature, email, timestamp]);
+    }
+
+    /**
+     * Helper method to get DeviceId.
+     * @param success should be the function which takes device id as a parameter ex. function(deviceid){ ... }
+     * @param fail the message if the action fails
+     * @return This method will return device ID if the MarketoSDK is initialized, otherwise will return null
+     */
+     getDeviceId: function (success, fail){
+      return cordova.exec(success, fail,
+        "MarketoPlugin",
+        "getDeviceId", []);
+     }
+
+     /**
+      * Helper method to set notification configeration.
+      * @param success the message if successful
+      * @param fail the message if the action fails
+      * @param bitmap it should be in string format for large notification icon. Available only Android Honeycomb and Above
+      * @param id should be resourceid for the small notification icon
+      */
+      setNotificationConfig: function (success, fail, bitmap, id){
+       return cordova.exec(success, fail,
+         "MarketoPlugin",
+         "setNotificationConfig", [bitmap, id]);
+      }
+
+      /**
+       * Helper method to get DeviceId.
+       * @param success should be the function which takes JSONArray as a parameter ex. function(config){ ... }
+       * @param fail the message if the action fails
+       * @return This method will return the notification configerations
+       */
+       getNotificationConfig: function (success, fail){
+        return cordova.exec(success, fail,
+          "MarketoPlugin",
+          "getNotificationConfig", []);
+       }
+
+    /**
      * Call this method when user wants to set the request's timeout
      *
      * @param success the message if successful
