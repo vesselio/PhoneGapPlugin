@@ -1,52 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-        id="com.vessel.abplugin"
+        id="com.marketo.plugin"
         version="0.1.0">
- <name>VesselABPlugin</name>
- <description>Vessel mobile A/B Testing plugin</description>
+ <name>MarketoPlugin</name>
+ <description>Marketo plugin</description>
  <license>Apache</license>
- <keywords>phonegap,a/b testing</keywords>
+ <keywords>phonegap, Marketo</keywords>
 
-<js-module src="www/vesselab.js" name="VesselABPlugin">
-  <clobbers target="window.vesselab" />
+<js-module src="www/Marketo.js" name="MarketoPlugin">
+  <clobbers target="window.marketo" />
 </js-module>
 
 <!-- android -->
 <platform name="android">
   <config-file target="res/xml/config.xml" parent="/*">
-    <feature name="VesselABPlugin">
-      <param name="android-package" value="com.vessel.abplugin.VesselABPlugin"/>
+    <feature name="MarketoPlugin">
+      <param name="android-package" value="com.marketo.plugin.MarketoPlugin"/>
     </feature>
   </config-file>
 
-  <source-file src="src/android/VesselABPlugin.java" target-dir="src/com/vessel/abplugin" />    
+  <source-file src="src/android/MarketoPlugin.java" target-dir="src/com/marketo/plugin" />
   <info>
-    Register your application at Vessel.io and download VesselSDK. 
-    Unzip it and copy paste in libs folder.
-    More details are at
-    http://docs.vessel.io/getting-started/
-  </info>  
-</platform>    
+    Register your application at Marketo.com for further documentation.
+  </info>
+</platform>
 
 <!-- ios -->
-
 <platform name="ios">
   <config-file target="config.xml" parent="/*">
-    <feature name="VesselABPlugin">
-      <param name="ios-package" value="VesselPlugin"/>
+    <feature name="MarketoPlugin">
+      <param name="ios-package" value="MarketoPlugin"/>
     </feature>
   </config-file>
   <framework src="libsqlite3.dylib" />
-  <framework src="libs/ios/Vessel.framework" />
+  <framework src="libs/ios/Marketo.framework" />
 
 
-  <header-file src="src/ios/VesselPlugin.h"/>
-  <source-file src="src/ios/VesselPlugin.m"/>
+  <header-file src="src/ios/MarketoPlugin.h"/>
+  <source-file src="src/ios/MarketoPlugin.m"/>
   <info>
-    Register your application at Vessel.io and download Vessel.Framework 
-    Unzip it and import in your XCode project. More details are at
-    http://docs.vessel.io/getting-started/
+    Register your application at Marketo.com for further documentation.
   </info>
 </platform>
 
