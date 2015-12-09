@@ -1,4 +1,4 @@
-package com.marketo.plugin;
+package src.com.marketo.plugin;
 
 import android.util.Log;
 import java.util.Iterator;
@@ -212,4 +212,3 @@ private MarketoLead getLeaad(JSONObject object) {
   return lead;
 }
 }
-
