@@ -10,5 +10,8 @@
 - (void) settimeoutinterval:(CDVInvokedUrlCommand*)command;
 - (void) reportaction:(CDVInvokedUrlCommand*)command;
 - (void) associatelead:(CDVInvokedUrlCommand*)command;
+- (void) setSecureSignature:(CDVInvokedUrlCommand*)command;
+- (void) removeSecureSignature:(CDVInvokedUrlCommand*)command;
+- (void) getDeviceId:(CDVInvokedUrlCommand*)command;
 
 @end
