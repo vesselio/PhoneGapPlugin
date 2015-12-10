@@ -118,11 +118,11 @@ var marketo = {
      * @param fail the message if the action fails
      * @param secureMode represents the secure signature information in Json format
      */
-     setSecureSignature: function (success, fail, accessKey, signature, email, timestamp){
+     setSecureSignature: function (success, fail, accessKey, signature, email, timestamp) {
       return cordova.exec(success, fail,
         "MarketoPlugin",
         "setSecureSignature", [accessKey, signature, email, timestamp]);
-    }
+    },
 
     /**
      * Helper method to get DeviceId.
@@ -130,11 +130,11 @@ var marketo = {
      * @param fail the message if the action fails
      * @return This method will return device ID if the MarketoSDK is initialized, otherwise will return null
      */
-     getDeviceId: function (success, fail){
+     getDeviceId: function (success, fail) {
       return cordova.exec(success, fail,
         "MarketoPlugin",
         "getDeviceId", []);
-     }
+     },
 
      /**
       * Helper method to set notification configeration.
@@ -143,11 +143,11 @@ var marketo = {
       * @param bitmap it should be in string format for large notification icon. Available only Android Honeycomb and Above
       * @param id should be resourceid for the small notification icon
       */
-      setNotificationConfig: function (success, fail, bitmap, id){
+      setNotificationConfig: function (success, fail, bitmap, id) {
        return cordova.exec(success, fail,
          "MarketoPlugin",
          "setNotificationConfig", [bitmap, id]);
-      }
+      },
 
       /**
        * Helper method to get DeviceId.
@@ -155,11 +155,11 @@ var marketo = {
        * @param fail the message if the action fails
        * @return This method will return the notification configerations
        */
-       getNotificationConfig: function (success, fail){
+       getNotificationConfig: function (success, fail) {
         return cordova.exec(success, fail,
           "MarketoPlugin",
           "getNotificationConfig", []);
-       }
+       },
 
     /**
      * Call this method when user wants to set the request's timeout
