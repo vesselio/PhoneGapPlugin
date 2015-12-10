@@ -170,6 +170,7 @@ public class MarketoPlugin extends CordovaPlugin {
                         MarketoConfig.Notification config = new MarketoConfig.Notification();
                         config.setNotificationLargeIcon(bitmap);
                         config.setNotificationSmallIcon(id);
+                        marketo.setNotificationConfig(config);
                         callbackContext.success();
                     }
                 });
