@@ -176,19 +176,16 @@
 
 - (void) removeSecureSignature:(CDVInvokedUrlCommand*)command{
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-      NSString * deviceId=  [[Marketo sharedInstance] getDeviceId];
-        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:deviceId];;
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-
+      NSString* devId= [[Marketo sharedInstance] getDeviceId];
+        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK ] callbackId:command.callbackId];
     });
 
 }
 - (void) getDeviceId:(CDVInvokedUrlCommand*)command{
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        [[Marketo sharedInstance] removeSecureSignature];
-
-        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK] callbackId:command.callbackId];
-
+      NSString * deviceId=  [[Marketo sharedInstance] getDeviceId];
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:deviceId];;
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     });
 }
 @end
