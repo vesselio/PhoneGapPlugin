@@ -176,7 +176,7 @@
 
 - (void) removeSecureSignature:(CDVInvokedUrlCommand*)command{
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-      NSString* devId= [[Marketo sharedInstance] getDeviceId];
+        [[Marketo sharedInstance] removeSecureSignature];
         [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK ] callbackId:command.callbackId];
     });
 
