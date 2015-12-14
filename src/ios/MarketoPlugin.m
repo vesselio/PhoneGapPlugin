@@ -153,4 +153,39 @@
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     });
 }
+
+- (void) setSecureSignature:(CDVInvokedUrlCommand*)command{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        CDVPluginResult* pluginResult = nil;
+        NSString* accessKey = [command.arguments objectAtIndex:0] ;
+        NSString* signature = [command.arguments objectAtIndex:1] ;
+        NSString* email = [command.arguments objectAtIndex:2] ;
+        NSString* timestamp = [command.arguments objectAtIndex:3] ;
+
+        MKTSecuritySignature * mktSecuritySignature = [[MKTSecuritySignature alloc] initWithAccessKey:accessKey signature:signature timestamp:timestamp email:email];
+        if(mktSecuritySignature!=nil ){
+            [[Marketo sharedInstance] setSecureSignature:mktSecuritySignature];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+        }else{
+            NSLog(@"Invalid MKTSecuritySignature .");
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+        }
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    });
+}
+
+- (void) removeSecureSignature:(CDVInvokedUrlCommand*)command{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [[Marketo sharedInstance] removeSecureSignature];
+        [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK ] callbackId:command.callbackId];
+    });
+
+}
+- (void) getDeviceId:(CDVInvokedUrlCommand*)command{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+      NSString * deviceId=  [[Marketo sharedInstance] getDeviceId];
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:deviceId];;
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    });
+}
 @end
