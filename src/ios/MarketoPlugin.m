@@ -135,7 +135,7 @@
 *
 * @param CDVInvokedUrlCommand contains json data related to lead
 */
-- (void) associatelead:(CDVInvokedUrlCommand*)command{
+- (void) associateLead:(CDVInvokedUrlCommand*)command{
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         CDVPluginResult* pluginResult = nil;
         NSString* leadData = [command.arguments objectAtIndex:0] ;
