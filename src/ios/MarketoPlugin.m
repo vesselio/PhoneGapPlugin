@@ -53,6 +53,10 @@
         NSString* munchkinID = [command.arguments objectAtIndex:0];
         NSString* secretKey = [command.arguments objectAtIndex:1];
 
+        if([self isObjectnull: munchkinID] || [self isObjectnull: secretKey]){
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"munchkinID or secretKey was null"];
+            return;
+        }
         if (secretKey != nil && munchkinID !=nil) {
             [[Marketo sharedInstance] initializeWithMunchkinID:munchkinID appSecret:secretKey launchOptions:nil];
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
@@ -84,12 +88,16 @@
 - (void) settimeoutinterval:(CDVInvokedUrlCommand*)command{
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         CDVPluginResult* pluginResult = nil;
+        if([self isObjectnull: [command.arguments objectAtIndex:0]]){
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"invalid timeout value ."];
+            return;
+        }
         NSNumber* timeOut = [NSNumber numberWithFloat:[[command.arguments objectAtIndex:0] floatValue]];
         if(timeOut!=0){
             [[Marketo sharedInstance] setTimeoutInterval:[timeOut intValue]];
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         }else{
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"invalid timeout value ."];
         }
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 
@@ -110,7 +118,7 @@
         NSString* reportAction = [command.arguments objectAtIndex:0] ;
         NSString* reportData = [command.arguments objectAtIndex:1] ;
         NSError * error;
-        if((reportAction!=nil && reportAction.length!=0) || (reportData!=nil && reportData.length!=0)){
+        if([self isObjectnull:reportAction] || [self isObjectnull:reportData]){
             NSDictionary *leadDictinary = [NSJSONSerialization JSONObjectWithData:[reportData dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&error];
             if(error!=nil || leadDictinary!=nil){
                 MarketoActionMetaData *data =[[MarketoActionMetaData alloc]init];
@@ -119,12 +127,12 @@
                 pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
             }else{
                 NSLog(@"Can not report data , issue with json data");
-                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Can not report data , issue with json data"];
             }
             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
         }else{
             NSLog(@"Can not report data , issue with report data");
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Can not report data , issue with json data"];
         }
     });
 }
@@ -140,6 +148,11 @@
         CDVPluginResult* pluginResult = nil;
         NSString* leadData = [command.arguments objectAtIndex:0] ;
         NSError * error;
+        if([self isObjectnull:leadData]){
+            NSLog(@"Can not parce lead , issue with json data");
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Can not parce lead , issue with json data"];
+            return ;
+        }
         NSDictionary *leadDictinary = [NSJSONSerialization JSONObjectWithData:[leadData dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&error];
         if(error!=nil || leadDictinary!=nil){
             MarketoLead * lead=[[MarketoLead alloc] init];
@@ -148,7 +161,7 @@
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         }else{
             NSLog(@"Can not parce lead , issue with json data");
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Can not parce lead , issue with json data"];
         }
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     });
@@ -161,14 +174,17 @@
         NSString* signature = [command.arguments objectAtIndex:1] ;
         NSString* email = [command.arguments objectAtIndex:2] ;
         NSString* timestamp = [command.arguments objectAtIndex:3] ;
-
+        if([self isObjectnull:accessKey] || [self isObjectnull:signature] || [self isObjectnull:email] || [self isObjectnull:timestamp]){
+            NSLog(@"Invalid MKTSecuritySignature .");
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+        }
         MKTSecuritySignature * mktSecuritySignature = [[MKTSecuritySignature alloc] initWithAccessKey:accessKey signature:signature timestamp:timestamp email:email];
         if(mktSecuritySignature!=nil ){
             [[Marketo sharedInstance] setSecureSignature:mktSecuritySignature];
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         }else{
             NSLog(@"Invalid MKTSecuritySignature .");
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Invalid MKTSecuritySignature."];
         }
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     });
@@ -178,8 +194,7 @@
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         [[Marketo sharedInstance] removeSecureSignature];
         [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK ] callbackId:command.callbackId];
-    });
-
+        });
 }
 - (void) getDeviceId:(CDVInvokedUrlCommand*)command{
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -187,5 +202,12 @@
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:deviceId];;
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     });
+}
+
+-(BOOL) isObjectnull:(id )value{
+    if([value isEqual:[NSNull null] ] || !value){
+        return YES;
+    }
+    return NO;
 }
 @end
