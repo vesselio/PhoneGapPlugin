@@ -80,7 +80,7 @@ public class MarketoPlugin extends CordovaPlugin {
                 });
                 return true;
             } else if ("associateLead".equals(action)) {
-                final JSONObject jsonObject = new JSONObject(args.getJSONObject(0));
+                final JSONObject jsonObject = new JSONObject(args.optString(0));
                 this.cordova.getThreadPool().execute(new Runnable() {
 
                     @Override
@@ -112,7 +112,7 @@ public class MarketoPlugin extends CordovaPlugin {
                 return true;
             } else if ("reportaction".equals(action)) {
                 final String REPORT_ACTION = args.optString(0);
-                final JSONObject json = new JSONObject(args.optJSONObject(1));
+                final JSONObject json = new JSONObject(args.optString(1));
                 this.cordova.getThreadPool().execute(new Runnable() {
 
                     @Override
