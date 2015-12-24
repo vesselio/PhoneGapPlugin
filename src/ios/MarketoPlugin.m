@@ -126,13 +126,11 @@
                 [[Marketo sharedInstance] reportAction:[leadDictinary objectForKey:@"event"] withMetaData:data];
                 pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
             }else{
-                NSLog(@"Can not report data , issue with json data");
-                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Can not report data , issue with json data"];
+                pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Can not report data, issue with report data"];
             }
             [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
         }else{
-            NSLog(@"Can not report data , issue with report data");
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Can not report data , issue with json data"];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Can not report data, issue with report data"];
         }
     });
 }
@@ -149,8 +147,7 @@
         NSString* leadData = [command.arguments objectAtIndex:0] ;
         NSError * error;
         if([self isObjectnull:leadData]){
-            NSLog(@"Can not parce lead , issue with json data");
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Can not parce lead , issue with json data"];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Can not report data, issue with report data"];
             return ;
         }
         NSDictionary *leadDictinary = [NSJSONSerialization JSONObjectWithData:[leadData dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&error];
@@ -160,8 +157,7 @@
             [[Marketo sharedInstance] associateLead:lead];
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         }else{
-            NSLog(@"Can not parce lead , issue with json data");
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Can not parce lead , issue with json data"];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Can not report data, issue with report data"];
         }
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     });
@@ -175,15 +171,13 @@
         NSString* email = [command.arguments objectAtIndex:2] ;
         NSString* timestamp = [command.arguments objectAtIndex:3] ;
         if([self isObjectnull:accessKey] || [self isObjectnull:signature] || [self isObjectnull:email] || [self isObjectnull:timestamp]){
-            NSLog(@"Invalid MKTSecuritySignature .");
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Invalid MKTSecuritySignature."];
         }
         MKTSecuritySignature * mktSecuritySignature = [[MKTSecuritySignature alloc] initWithAccessKey:accessKey signature:signature timestamp:timestamp email:email];
         if(mktSecuritySignature!=nil ){
             [[Marketo sharedInstance] setSecureSignature:mktSecuritySignature];
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         }else{
-            NSLog(@"Invalid MKTSecuritySignature .");
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Invalid MKTSecuritySignature."];
         }
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
