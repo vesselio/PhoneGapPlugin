@@ -198,6 +198,16 @@
     });
 }
 
+- (void) isSecureModeEnabled:(CDVInvokedUrlCommand*)command{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        BOOL isSecureModeEnabled =  [[Marketo sharedInstance] isSecureModeEnabled];
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:isSecureModeEnabled];;
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+
+    });
+
+}
+
 -(BOOL) isObjectnull:(id )value{
     if([value isEqual:[NSNull null] ] || !value){
         return YES;

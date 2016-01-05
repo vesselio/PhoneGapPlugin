@@ -125,6 +125,18 @@ var marketo = {
     },
 
     /**
+     * Call this method when user wants to check the status of secure mode
+     *
+     * @param success contains the boolean flag to check whether secure mode is on or off.
+     * @param fail the message if the action fails
+     */
+    isSecureModeEnabled: function (success, fail) {
+     return cordova.exec(success, fail,
+       "MarketoPlugin",
+       "isSecureModeEnabled",[]);
+   },
+
+    /**
      * Helper method to get DeviceId.
      * @param success should be the function which takes device id as a parameter ex. function(deviceid){ ... }
      * @param fail the message if the action fails
