@@ -201,11 +201,9 @@
 - (void) isSecureModeEnabled:(CDVInvokedUrlCommand*)command{
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         BOOL isSecureModeEnabled =  [[Marketo sharedInstance] isSecureModeEnabled];
-        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:isSecureModeEnabled];;
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsInt:isSecureModeEnabled?1:0];;
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-
     });
-
 }
 
 -(BOOL) isObjectnull:(id )value{
