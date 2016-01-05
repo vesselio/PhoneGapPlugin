@@ -132,6 +132,15 @@ public class MarketoPlugin extends CordovaPlugin {
                     }
                 });
                 return true;
+            } else if ("isSecureModeEnabled".equals(action)) {
+                this.cordova.getThreadPool().execute(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        callbackContext.success(marketo.isSecureModeEnabled());
+                    }
+                });
+                return true;
             } else if ("setSecureSignature".equals(action)) {
                 final String accessKey = args.optString(0);
                 final String signature = args.optString(1);

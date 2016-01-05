@@ -13,5 +13,6 @@
 - (void) setSecureSignature:(CDVInvokedUrlCommand*)command;
 - (void) removeSecureSignature:(CDVInvokedUrlCommand*)command;
 - (void) getDeviceId:(CDVInvokedUrlCommand*)command;
+- (void) isSecureModeEnabled:(CDVInvokedUrlCommand*)command;
 
 @end
