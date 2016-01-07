@@ -7,7 +7,7 @@
 - (void)initialize:(CDVInvokedUrlCommand*)command;
 - (void)resume:(CDVInvokedUrlCommand*)command;
 - (void)pause:(CDVInvokedUrlCommand*)command;
-- (void) settimeoutinterval:(CDVInvokedUrlCommand*)command;
+- (void) settimeout:(CDVInvokedUrlCommand*)command;
 - (void) reportaction:(CDVInvokedUrlCommand*)command;
 - (void) associateLead:(CDVInvokedUrlCommand*)command;
 - (void) setSecureSignature:(CDVInvokedUrlCommand*)command;
