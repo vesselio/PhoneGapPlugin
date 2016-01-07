@@ -85,7 +85,7 @@
 }
 
 //if action is settimeout then it will det the default time out to the value from json
-- (void) settimeoutinterval:(CDVInvokedUrlCommand*)command{
+- (void) settimeout:(CDVInvokedUrlCommand*)command{
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         CDVPluginResult* pluginResult = nil;
         if([self isObjectnull: [command.arguments objectAtIndex:0]]){
