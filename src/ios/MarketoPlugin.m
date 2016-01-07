@@ -118,12 +118,12 @@
         NSString* reportAction = [command.arguments objectAtIndex:0] ;
         NSString* reportData = [command.arguments objectAtIndex:1] ;
         NSError * error;
-        if([self isObjectnull:reportAction] || [self isObjectnull:reportData]){
+        if(![self isObjectnull:reportAction] && ![self isObjectnull:reportData]){
             NSDictionary *leadDictinary = [NSJSONSerialization JSONObjectWithData:[reportData dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&error];
-            if(error!=nil || leadDictinary!=nil){
+            if(error==nil && leadDictinary!=nil){
                 MarketoActionMetaData *data =[[MarketoActionMetaData alloc]init];
                 [data setValue:[leadDictinary objectForKey:@"data"] forKeyPath:@"actionMetadata"];
-                [[Marketo sharedInstance] reportAction:[leadDictinary objectForKey:@"event"] withMetaData:data];
+                [[Marketo sharedInstance] reportAction:reportAction withMetaData:data];
                 pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
             }else{
                 pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Can not report data, issue with report data"];
@@ -151,7 +151,7 @@
             return ;
         }
         NSDictionary *leadDictinary = [NSJSONSerialization JSONObjectWithData:[leadData dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&error];
-        if(error!=nil || leadDictinary!=nil){
+        if(error==nil && leadDictinary!=nil){
             MarketoLead * lead=[[MarketoLead alloc] init];
             [lead setValue:leadDictinary forKeyPath:@"userAttributes"];
             [[Marketo sharedInstance] associateLead:lead];
