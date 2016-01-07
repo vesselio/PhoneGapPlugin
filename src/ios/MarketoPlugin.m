@@ -122,7 +122,10 @@
             NSDictionary *leadDictinary = [NSJSONSerialization JSONObjectWithData:[reportData dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&error];
             if(error==nil && leadDictinary!=nil){
                 MarketoActionMetaData *data =[[MarketoActionMetaData alloc]init];
-                [data setValue:[leadDictinary objectForKey:@"data"] forKeyPath:@"actionMetadata"];
+                [data setType:[leadDictinary objectForKey:@"Action Type"]];
+                [data setDetails:[leadDictinary objectForKey:@"Action Details"]];
+                [data setMetric:[leadDictinary objectForKey:@"Action Metric"]];
+                [data setLength:[leadDictinary objectForKey:@"Action Length"]];
                 [[Marketo sharedInstance] reportAction:reportAction withMetaData:data];
                 pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
             }else{
