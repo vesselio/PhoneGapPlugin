@@ -46,6 +46,8 @@ public class MarketoPlugin extends CordovaPlugin {
     public static final String KEY_BIRTHDAY = "dateOfBirth";
     public static final String KEY_FACEBOOK_PROFILE_URL = "facebookProfileURL";
     public static final String KEY_FACEBOOK_PROFILE_PIC = "facebookPhotoURL";
+
+    public static final String KEY_FOR_NOTIFICATION_ICON = "notificaion.icon_path";
     private CallbackContext callbackContext;
     private Activity activityContext;
 
@@ -170,8 +172,8 @@ public class MarketoPlugin extends CordovaPlugin {
                 });
                 return true;
             } else if ("setNotificationConfig".equals(action)) {
-                final Bitmap bitmap = StringToBitMap(args.optString(0));
-                final int id = args.optInt(1);
+                final Bitmap bitmap = getBitMap(args.optString(0));
+                final int id = getResourceID(args.optString(1));
                 this.cordova.getThreadPool().execute(new Runnable() {
 
                     @Override
@@ -191,8 +193,8 @@ public class MarketoPlugin extends CordovaPlugin {
                     public void run() {
                         MarketoConfig.Notification config = marketo.getNotificationConfig();
                         JSONArray object = new JSONArray();
-                        object.put(BitMapToString(config.getNotificationLargeIcon()));
-                        object.put(config.getNotificationSmallIcon());
+                        object.put(BitMapPath(config.getNotificationLargeIcon()));
+                        object.put(getResourseName(config.getNotificationSmallIcon()));
                         callbackContext.success(object);
                     }
                 });
@@ -217,29 +219,48 @@ public class MarketoPlugin extends CordovaPlugin {
         }
     }
 
-    /**
-     * @param bitmap which needs to be converted into string
-     * @return converting bitmap and return a string
-     */
-    public String BitMapToString(Bitmap bitmap) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        byte[] b = baos.toByteArray();
-        return Base64.encodeToString(b, Base64.DEFAULT);
+    public int getResourceID(Sring resourceName){
+      return activityContext.getResources().getIdentifier(resourceName , "drawable", activityContext.getPackageName());
     }
 
-    /**
-     * @param encodedString Base64 String
-     * @return bitmap (from given string)
-     */
-    public Bitmap StringToBitMap(String encodedString) {
-        try {
-            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
-            return BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-        } catch (Exception e) {
-            e.getMessage();
-            return null;
-        }
+    public String getResourseName(int resoirceID){
+      return activityContext.getResources().getResourceEntryName(resoirceID);
+    }
+
+    public Bitmap getBitMap(Sring filePath){
+          MktoUtils.writePreference(activityContext, KEY_FOR_NOTIFICATION_ICON, filePath);
+          Bitmap bm = null;
+          InputStream is = null;
+          BufferedInputStream bis = null;
+          try {
+              URLConnection conn = new URL(url).openConnection();
+              conn.connect();
+              is = conn.getInputStream();
+              bis = new BufferedInputStream(is, 8192);
+              bm = BitmapFactory.decodeStream(bis);
+          } catch (Exception e)  {
+              e.printStackTrace();
+          } finally {
+              if (bis != null) {
+                  try {
+                      bis.close();
+                  }catch (IOException e) {
+                      e.printStackTrace();
+                  }
+              }
+              if (is != null) {
+                  try {
+                      is.close();
+                  }catch (IOException e) {
+                      e.printStackTrace();
+                  }
+              }
+          }
+          return bm;
+    }
+    
+    public String BitMapPath(Bitmap bitmap){
+      return MktoUtils.readPreference(activityContext, KEY_FOR_NOTIFICATION_ICON);
     }
 
     private MarketoActionMetaData getMetadata(JSONObject json) {
