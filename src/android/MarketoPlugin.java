@@ -233,7 +233,7 @@ public class MarketoPlugin extends CordovaPlugin {
           InputStream is = null;
           BufferedInputStream bis = null;
           try {
-              URLConnection conn = new URL(url).openConnection();
+              URLConnection conn = new URL(filePath).openConnection();
               conn.connect();
               is = conn.getInputStream();
               bis = new BufferedInputStream(is, 8192);
@@ -258,7 +258,7 @@ public class MarketoPlugin extends CordovaPlugin {
           }
           return bm;
     }
-    
+
     public String BitMapPath(Bitmap bitmap){
       return MktoUtils.readPreference(activityContext, KEY_FOR_NOTIFICATION_ICON);
     }
