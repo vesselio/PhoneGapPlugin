@@ -5,7 +5,12 @@ import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.util.Log;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Iterator;
 
 import org.apache.cordova.CallbackContext;
@@ -22,6 +27,8 @@ import com.marketo.errors.MktoException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
+
+import marketo.utils.MktoUtils;
 
 public class MarketoPlugin extends CordovaPlugin {
     public static final String KEY_ACTION_TYPE = "Action Type";
@@ -219,7 +226,7 @@ public class MarketoPlugin extends CordovaPlugin {
         }
     }
 
-    public int getResourceID(Sring resourceName){
+    public int getResourceID(String resourceName){
       return activityContext.getResources().getIdentifier(resourceName , "drawable", activityContext.getPackageName());
     }
 
@@ -227,7 +234,7 @@ public class MarketoPlugin extends CordovaPlugin {
       return activityContext.getResources().getResourceEntryName(resoirceID);
     }
 
-    public Bitmap getBitMap(Sring filePath){
+    public Bitmap getBitMap(String filePath){
           MktoUtils.writePreference(activityContext, KEY_FOR_NOTIFICATION_ICON, filePath);
           Bitmap bm = null;
           InputStream is = null;
