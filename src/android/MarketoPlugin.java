@@ -1,12 +1,11 @@
 package com.marketo.plugin;
 
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Base64;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -146,7 +145,7 @@ public class MarketoPlugin extends CordovaPlugin {
 
                     @Override
                     public void run() {
-                          callbackContext.success(Marketo.isSecureModeEnabled()?0:1);
+                        callbackContext.success(Marketo.isSecureModeEnabled() ? 0 : 1);
                     }
                 });
                 return true;
@@ -200,7 +199,7 @@ public class MarketoPlugin extends CordovaPlugin {
                     public void run() {
                         MarketoConfig.Notification config = marketo.getNotificationConfig();
                         JSONArray object = new JSONArray();
-                        object.put(BitMapPath(config.getNotificationLargeIcon()));
+                        object.put(BitMapPath());
                         object.put(getResourseName(config.getNotificationSmallIcon()));
                         callbackContext.success(object);
                     }
@@ -226,48 +225,30 @@ public class MarketoPlugin extends CordovaPlugin {
         }
     }
 
-    public int getResourceID(String resourceName){
-      return activityContext.getResources().getIdentifier(resourceName , "drawable", activityContext.getPackageName());
+    public int getResourceID(String resourceName) {
+        return activityContext.getResources().getIdentifier(resourceName, "drawable", activityContext.getPackageName());
     }
 
-    public String getResourseName(int resoirceID){
-      return activityContext.getResources().getResourceEntryName(resoirceID);
+    public String getResourseName(int resoirceID) {
+        return activityContext.getResources().getResourceEntryName(resoirceID);
     }
 
-    public Bitmap getBitMap(String filePath){
-          MktoUtils.writePreference(activityContext, KEY_FOR_NOTIFICATION_ICON, filePath);
-          Bitmap bm = null;
-          InputStream is = null;
-          BufferedInputStream bis = null;
-          try {
-              URLConnection conn = new URL(filePath).openConnection();
-              conn.connect();
-              is = conn.getInputStream();
-              bis = new BufferedInputStream(is, 8192);
-              bm = BitmapFactory.decodeStream(bis);
-          } catch (Exception e)  {
-              e.printStackTrace();
-          } finally {
-              if (bis != null) {
-                  try {
-                      bis.close();
-                  }catch (IOException e) {
-                      e.printStackTrace();
-                  }
-              }
-              if (is != null) {
-                  try {
-                      is.close();
-                  }catch (IOException e) {
-                      e.printStackTrace();
-                  }
-              }
-          }
-          return bm;
+    public Bitmap getBitMap(String filePath) {
+        Bitmap bitmap = null;
+        try {
+            MktoUtils.writePreference(activityContext, KEY_FOR_NOTIFICATION_ICON, filePath);
+            AssetManager assetManager = activityContext.getAssets();
+            InputStream istr = null;
+            istr = assetManager.open(filePath);
+            bitmap = BitmapFactory.decodeStream(istr);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bitmap;
     }
 
-    public String BitMapPath(Bitmap bitmap){
-      return MktoUtils.readPreference(activityContext, KEY_FOR_NOTIFICATION_ICON);
+    public String BitMapPath() {
+        return MktoUtils.readPreference(activityContext, KEY_FOR_NOTIFICATION_ICON);
     }
 
     private MarketoActionMetaData getMetadata(JSONObject json) {
