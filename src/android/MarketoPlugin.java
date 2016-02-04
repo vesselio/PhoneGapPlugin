@@ -53,7 +53,7 @@ public class MarketoPlugin extends CordovaPlugin {
     public static final String KEY_FACEBOOK_PROFILE_URL = "facebookProfileURL";
     public static final String KEY_FACEBOOK_PROFILE_PIC = "facebookPhotoURL";
 
-    public static final String KEY_FOR_NOTIFICATION_ICON = "notificaion.icon_path";
+    public static final String KEY_FOR_NOTIFICATION_ICON = "notification.icon_path";
     private CallbackContext callbackContext;
     private Activity activityContext;
 
@@ -241,8 +241,12 @@ public class MarketoPlugin extends CordovaPlugin {
             InputStream istr = null;
             istr = assetManager.open(filePath);
             bitmap = BitmapFactory.decodeStream(istr);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            callbackContext.error("Failed to locate asset file");
         } catch (Exception e) {
             e.printStackTrace();
+            callbackContext.error(e.getMessage());
         }
         return bitmap;
     }
