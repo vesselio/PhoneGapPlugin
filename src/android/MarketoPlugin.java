@@ -1,11 +1,13 @@
 package com.marketo.plugin;
 
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -26,8 +28,6 @@ import com.marketo.errors.MktoException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
-
-import marketo.utils.MktoUtils;
 
 public class MarketoPlugin extends CordovaPlugin {
     public static final String KEY_ACTION_TYPE = "Action Type";
@@ -236,7 +236,10 @@ public class MarketoPlugin extends CordovaPlugin {
     public Bitmap getBitMap(String filePath) {
         Bitmap bitmap = null;
         try {
-            MktoUtils.writePreference(activityContext, KEY_FOR_NOTIFICATION_ICON, filePath);
+            SharedPreferences settings = activityContext.getSharedPreferences("com.mkt.phonegap", 0);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putString(KEY_FOR_NOTIFICATION_ICON, filePath);
+            editor.commit();
             AssetManager assetManager = activityContext.getAssets();
             InputStream istr = null;
             istr = assetManager.open(filePath);
@@ -252,7 +255,15 @@ public class MarketoPlugin extends CordovaPlugin {
     }
 
     public String BitMapPath() {
-        return MktoUtils.readPreference(activityContext, KEY_FOR_NOTIFICATION_ICON);
+        String result = null;
+        if (activityContext != null) {
+            SharedPreferences settings = activityContext.getSharedPreferences("com.mkt.phonegap", 0);
+            try {
+                result = settings.getString(KEY_FOR_NOTIFICATION_ICON, "");
+            } catch (ClassCastException ex) {
+            }
+        }
+        return result;
     }
 
     private MarketoActionMetaData getMetadata(JSONObject json) {
@@ -332,3 +343,4 @@ public class MarketoPlugin extends CordovaPlugin {
         return lead;
     }
 }
+
