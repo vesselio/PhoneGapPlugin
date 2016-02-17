@@ -145,7 +145,7 @@ public class MarketoPlugin extends CordovaPlugin {
 
                     @Override
                     public void run() {
-                        callbackContext.success(Marketo.isSecureModeEnabled() ? 0 : 1);
+                        callbackContext.success(Marketo.isSecureModeEnabled() ? 1 : 0);
                     }
                 });
                 return true;
