@@ -1,11 +1,17 @@
 package com.marketo.plugin;
 
+import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Base64;
 import android.util.Log;
 
-import java.io.ByteArrayOutputStream;
+import java.io.BufferedInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Iterator;
 
 import org.apache.cordova.CallbackContext;
@@ -46,6 +52,8 @@ public class MarketoPlugin extends CordovaPlugin {
     public static final String KEY_BIRTHDAY = "dateOfBirth";
     public static final String KEY_FACEBOOK_PROFILE_URL = "facebookProfileURL";
     public static final String KEY_FACEBOOK_PROFILE_PIC = "facebookPhotoURL";
+
+    public static final String KEY_FOR_NOTIFICATION_ICON = "notification.icon_path";
     private CallbackContext callbackContext;
     private Activity activityContext;
 
@@ -137,7 +145,7 @@ public class MarketoPlugin extends CordovaPlugin {
 
                     @Override
                     public void run() {
-                          callbackContext.success(Marketo.isSecureModeEnabled()?0:1);
+                        callbackContext.success(Marketo.isSecureModeEnabled() ? 1 : 0);
                     }
                 });
                 return true;
@@ -170,8 +178,8 @@ public class MarketoPlugin extends CordovaPlugin {
                 });
                 return true;
             } else if ("setNotificationConfig".equals(action)) {
-                final Bitmap bitmap = StringToBitMap(args.optString(0));
-                final int id = args.optInt(1);
+                final Bitmap bitmap = getBitMap(args.optString(0));
+                final int id = getResourceID(args.optString(1));
                 this.cordova.getThreadPool().execute(new Runnable() {
 
                     @Override
@@ -191,8 +199,8 @@ public class MarketoPlugin extends CordovaPlugin {
                     public void run() {
                         MarketoConfig.Notification config = marketo.getNotificationConfig();
                         JSONArray object = new JSONArray();
-                        object.put(BitMapToString(config.getNotificationLargeIcon()));
-                        object.put(config.getNotificationSmallIcon());
+                        object.put(BitMapPath());
+                        object.put(getResourseName(config.getNotificationSmallIcon()));
                         callbackContext.success(object);
                     }
                 });
@@ -217,29 +225,45 @@ public class MarketoPlugin extends CordovaPlugin {
         }
     }
 
-    /**
-     * @param bitmap which needs to be converted into string
-     * @return converting bitmap and return a string
-     */
-    public String BitMapToString(Bitmap bitmap) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        byte[] b = baos.toByteArray();
-        return Base64.encodeToString(b, Base64.DEFAULT);
+    public int getResourceID(String resourceName) {
+        return activityContext.getResources().getIdentifier(resourceName, "drawable", activityContext.getPackageName());
     }
 
-    /**
-     * @param encodedString Base64 String
-     * @return bitmap (from given string)
-     */
-    public Bitmap StringToBitMap(String encodedString) {
+    public String getResourseName(int resoirceID) {
+        return activityContext.getResources().getResourceEntryName(resoirceID);
+    }
+
+    public Bitmap getBitMap(String filePath) {
+        Bitmap bitmap = null;
         try {
-            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
-            return BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            SharedPreferences settings = activityContext.getSharedPreferences("com.mkt.phonegap", 0);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putString(KEY_FOR_NOTIFICATION_ICON, filePath);
+            editor.commit();
+            AssetManager assetManager = activityContext.getAssets();
+            InputStream istr = null;
+            istr = assetManager.open(filePath);
+            bitmap = BitmapFactory.decodeStream(istr);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            callbackContext.error("Failed to locate asset file");
         } catch (Exception e) {
-            e.getMessage();
-            return null;
+            e.printStackTrace();
+            callbackContext.error(e.getMessage());
         }
+        return bitmap;
+    }
+
+    public String BitMapPath() {
+        String result = null;
+        if (activityContext != null) {
+            SharedPreferences settings = activityContext.getSharedPreferences("com.mkt.phonegap", 0);
+            try {
+                result = settings.getString(KEY_FOR_NOTIFICATION_ICON, "");
+            } catch (ClassCastException ex) {
+            }
+        }
+        return result;
     }
 
     private MarketoActionMetaData getMetadata(JSONObject json) {
@@ -319,3 +343,4 @@ public class MarketoPlugin extends CordovaPlugin {
         return lead;
     }
 }
+

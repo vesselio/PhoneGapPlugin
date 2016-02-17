@@ -152,13 +152,13 @@ var marketo = {
       * Helper method to set notification configeration.
       * @param success the message if successful
       * @param fail the message if the action fails
-      * @param bitmap it should be in string format for large notification icon. Available only Android Honeycomb and Above
-      * @param id should be resourceid for the small notification icon
+      * @param image path for large notification icon. Available only Android Honeycomb and Above
+      * @param resourceName should be the name of the resource for the small notification icon
       */
-      setNotificationConfig: function (success, fail, bitmap, id) {
+      setNotificationConfig: function (success, fail, imagePath, resourceName) {
        return cordova.exec(success, fail,
          "MarketoPlugin",
-         "setNotificationConfig", [bitmap, id]);
+         "setNotificationConfig", [imagePath, resourceName]);
       },
 
       /**
