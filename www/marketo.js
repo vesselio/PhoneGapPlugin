@@ -19,22 +19,22 @@
 */
 
 var marketo = {
-  "KEY_FIRST_NAME" : "firstName";
-  "KEY_LAST_NAME" : "lastName";
-  "KEY_ADDRESS" : "address";
-  "KEY_CITY" : "city";
-  "KEY_STATE" : "state";
-  "KEY_COUNTRY" : "country";
-  "KEY_POSTAL_CODE" : "postalCode";
-  "KEY_GENDER" : "gender";
-  "KEY_EMAIL" : "email";
-  "KEY_TWITTER" : "twitterId";
-  "KEY_FACEBOOK" : "facebookId";
-  "KEY_LINKEDIN" : "linkedinId";
-  "KEY_LEAD_SOURCE" : "leadSource";
-  "KEY_BIRTHDAY" : "dateOfBirth";
-  "KEY_FACEBOOK_PROFILE_URL" : "facebookProfileURL";
-  "KEY_FACEBOOK_PROFILE_PIC" : "facebookPhotoURL";
+  "KEY_FIRST_NAME" : "firstName",
+  "KEY_LAST_NAME" : "lastName",
+  "KEY_ADDRESS" : "address",
+  "KEY_CITY" : "city",
+  "KEY_STATE" : "state",
+  "KEY_COUNTRY" : "country",
+  "KEY_POSTAL_CODE" : "postalCode",
+  "KEY_GENDER" : "gender",
+  "KEY_EMAIL" : "email",
+  "KEY_TWITTER" : "twitterId",
+  "KEY_FACEBOOK" : "facebookId",
+  "KEY_LINKEDIN" : "linkedinId",
+  "KEY_LEAD_SOURCE" : "leadSource",
+  "KEY_BIRTHDAY" : "dateOfBirth",
+  "KEY_FACEBOOK_PROFILE_URL" : "facebookProfileURL",
+  "KEY_FACEBOOK_PROFILE_PIC" : "facebookPhotoURL",
 
   /**
    * Call this method when user wants to initialize marketo application
