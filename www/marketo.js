@@ -19,6 +19,23 @@
 */
 
 var marketo = {
+  "KEY_FIRST_NAME" : "firstName",
+  "KEY_LAST_NAME" : "lastName",
+  "KEY_ADDRESS" : "address",
+  "KEY_CITY" : "city",
+  "KEY_STATE" : "state",
+  "KEY_COUNTRY" : "country",
+  "KEY_POSTAL_CODE" : "postalCode",
+  "KEY_GENDER" : "gender",
+  "KEY_EMAIL" : "email",
+  "KEY_TWITTER" : "twitterId",
+  "KEY_FACEBOOK" : "facebookId",
+  "KEY_LINKEDIN" : "linkedinId",
+  "KEY_LEAD_SOURCE" : "leadSource",
+  "KEY_BIRTHDAY" : "dateOfBirth",
+  "KEY_FACEBOOK_PROFILE_URL" : "facebookProfileURL",
+  "KEY_FACEBOOK_PROFILE_PIC" : "facebookPhotoURL",
+
   /**
    * Call this method when user wants to initialize marketo application
    * Action name should be
@@ -98,6 +115,80 @@ var marketo = {
             "MarketoPlugin",
             "reportaction", [reportAction, action_metadata]);
     },
+
+    /**
+     * Call this method when user wants to remove secure signature
+     *
+     * @param success the message if successful
+     * @param fail the message if the action fails
+     */
+    removeSecureSignature: function (success, fail) {
+        return cordova.exec( success, fail,
+            "MarketoPlugin",
+            "removeSecureSignature", []);
+    },
+
+    /**
+     * Call this method when user wants to set the request's timeout
+     *
+     * @param success the message if successful
+     * @param fail the message if the action fails
+     * @param secureMode represents the secure signature information in Json format
+     */
+     setSecureSignature: function (success, fail, accessKey, signature, email, timestamp) {
+      return cordova.exec(success, fail,
+        "MarketoPlugin",
+        "setSecureSignature", [accessKey, signature, email, timestamp]);
+    },
+
+    /**
+     * Call this method when user wants to check the status of secure mode
+     *
+     * @param success contains the boolean flag to check whether secure mode is on or off.
+     * @param fail the message if the action fails
+     */
+    isSecureModeEnabled: function (success, fail) {
+     return cordova.exec(success, fail,
+       "MarketoPlugin",
+       "isSecureModeEnabled",[]);
+   },
+
+    /**
+     * Helper method to get DeviceId.
+     * @param success should be the function which takes device id as a parameter ex. function(deviceid){ ... }
+     * @param fail the message if the action fails
+     * @return This method will return device ID if the MarketoSDK is initialized, otherwise will return null
+     */
+     getDeviceId: function (success, fail) {
+      return cordova.exec(success, fail,
+        "MarketoPlugin",
+        "getDeviceId", []);
+     },
+
+     /**
+      * Helper method to set notification configeration.
+      * @param success the message if successful
+      * @param fail the message if the action fails
+      * @param image path for large notification icon. Available only Android Honeycomb and Above
+      * @param resourceName should be the name of the resource for the small notification icon
+      */
+      setNotificationConfig: function (success, fail, imagePath, resourceName) {
+       return cordova.exec(success, fail,
+         "MarketoPlugin",
+         "setNotificationConfig", [imagePath, resourceName]);
+      },
+
+      /**
+       * Helper method to get DeviceId.
+       * @param success should be the function which takes JSONArray as a parameter ex. function(config){ ... }
+       * @param fail the message if the action fails
+       * @return This method will return the notification configerations
+       */
+       getNotificationConfig: function (success, fail) {
+        return cordova.exec(success, fail,
+          "MarketoPlugin",
+          "getNotificationConfig", []);
+       },
 
     /**
      * Call this method when user wants to set the request's timeout
