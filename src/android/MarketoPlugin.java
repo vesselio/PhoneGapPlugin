@@ -216,7 +216,16 @@ public class MarketoPlugin extends CordovaPlugin {
                     }
                 });
                 return true;
-            }
+	   } else if("setCurrentActivity".equals(action)){
+                this.cordova.getThreadPool().execute(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        marketo.setPhonegapCurrentActivity(activityContext);
+                        callbackContext.success();
+                    }
+                });
+            
             return false;
         } catch (Exception e) {
             e.printStackTrace();
