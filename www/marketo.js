@@ -201,19 +201,6 @@ var marketo = {
       return cordova.exec(success, fail,
         "MarketoPlugin",
         "settimeout", [timeout]);
-    },
-
-       /**
-         * Call this method when user wants to log users activity in his application.
-         *
-         * @param success the message if successful
-         * @param fail the message if the action fails
-         */
-        setCurrentActivity: function (success, fail){
-          return cordova.exec(success, fail,
-            "MarketoPlugin",
-            "setCurrentActivity", []);
-        }
-
+    }
 }
 module.exports = marketo;
