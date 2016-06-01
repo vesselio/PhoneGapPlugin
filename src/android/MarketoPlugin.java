@@ -6,12 +6,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
-import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.Iterator;
 
 import org.apache.cordova.CallbackContext;
@@ -72,6 +68,7 @@ public class MarketoPlugin extends CordovaPlugin {
                     @Override
                     public void run() {
                         marketo.initializeSDK(MUCHKIN_ID, SECRET_KEY);
+                        marketo.setPhonegapCurrentActivity(activityContext);
                         callbackContext.success();
                     }
                 });
@@ -343,4 +340,5 @@ public class MarketoPlugin extends CordovaPlugin {
         return lead;
     }
 }
+
 
