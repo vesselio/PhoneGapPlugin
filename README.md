@@ -1,7 +1,9 @@
 # Marketo Mobile SDK for PhoneGap
 
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).  
-Change Log
+
+## Change Log
+
 v0.6.0
 
 - InApp Notifications
@@ -11,9 +13,13 @@ v0.5.0
 - All features available from MME SDK version 0.5.x
 - Small bug fixes
 
-Contributing Code
+## Contributing Code
 
 We accept pull requests! Please raise a merge request.
+
+## Issues
+
+Please contact <developerfeedback@marketo.com> for any issues integrating or using this plugin.
 
 ## Marketo PhoneGap Plugin Installation Guide 
 
@@ -29,3 +35,17 @@ We accept pull requests! Please raise a merge request.
 cordova plugin add https://github.com/Marketo/PhoneGapPlugin.git --variable APPLICATION_SECRET_KEY="YOUR_APPLICATION_SECRET"
 
 This will add Marketo Plugin into your phonegap application.
+
+### Initialize Marketo Framework
+1.  After successful installation, you need to initialize Marketo framework.
+2.  Open your main js file and Add the following code under “onDeviceReady: function()”. 
+
+```javascript
+// This method will Initialize the Marketo Framework using Your MunchkinId and secret key
+marketo.initialize(
+  	function() { console.log("MarketoSDK Init done."); } ,
+  	function(error) { console.log("an error occurred:" + error); },
+  	'YOUR_MUNCHKIN_ID', 'YOUR_SECRET_KEY'
+);
+```
+
