@@ -88,7 +88,7 @@ Note: You can get your GCM Project ID from Google Developer Console https://cons
     },
     JSON.stringify(lead)
   );
-...
+```
 
 ### Marketo Report Action:
 1.  You can report any user performed action by calling the reportAction method.
@@ -108,5 +108,5 @@ Note: You can get your GCM Project ID from Google Developer Console https://cons
     "Add To Cart",
     JSON.stringify(event)
   );
-...
+```
 
