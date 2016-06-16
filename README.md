@@ -62,5 +62,33 @@ marketo. initializeMarketoPush(
 ```
 Note: You can get your GCM Project ID from Google Developer Console https://console.developers.google.com/
 
+### Marketo Associate Lead:
+1.  You can create a Marketo Lead by calling associate lead method.
+
+```javascript
+  // First create a lead as below
+  var lead = {};
+  lead_obj[marketo.KEY_FIRST_NAME]= "John";
+  lead_obj[marketo.KEY_LAST_NAME]= "Erickson";
+  lead_obj[marketo.KEY_EMAIL]= "johnE@marketo.com";
+  lead_obj[marketo.KEY_ADDRESS]= "901 Mariners Island Boulevard";
+  lead_obj[marketo.KEY_CITY]= "San Mateo";
+  lead_obj[marketo.KEY_STATE]= "CA";
+  lead_obj[marketo.KEY_COUNTRY]= "USA";
+  lead_obj[marketo.KEY_POSTAL_CODE]= "94404";
+  lead_obj[marketo.KEY_GENDER]= "Male";
+  
+  // Use associate function to associate it.
+  marketo.associateLead(
+    function() {
+      console.log("MarketoSDK : Lead Associated");
+    },
+    function(error) {
+      console.log("an error occurred:" + error);
+    },
+    JSON.stringify(lead)
+  );
+...
+
 
 
