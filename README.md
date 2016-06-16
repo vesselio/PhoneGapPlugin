@@ -88,7 +88,16 @@ Note: You can get your GCM Project ID from Google Developer Console https://cons
     },
     JSON.stringify(lead)
   );
-...
+```
 
+### Marketo Report Actions:
+1.  To report custom action use following function.
 
+```javascript
+marketo.reportaction(
+  function(){console.log("MarketoSDK : New action reported");},
+  function(error){ console.log("an error occurred:" + error); },
+  'CUSTOM_ACTION_NAME','ACTION_META_DATA_STRING'
+);
 
+```
