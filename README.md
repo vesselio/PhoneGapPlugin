@@ -91,7 +91,7 @@ Note: You can get your GCM Project ID from Google Developer Console https://cons
 ```
 
 ### Marketo Report Action:
-1.  You can report any user performed action by calling the reportAction method.
+1.  You can report any user performed action by calling the reportaction method.
 
 ```javascript
   // First create an event as below
@@ -109,4 +109,48 @@ Note: You can get your GCM Project ID from Google Developer Console https://cons
     JSON.stringify(event)
   );
 ```
+### Reporting Start and Stop of activity for analitics (Android Specific)
+There are two ways by which we can achive reporting analitics 
 
+1. 
+```java
+  //In CordovaActivity from the platform/android/src/package name/MainActivity.java 
+  @Override
+  public void onCreate(Bundle savedInstanceState){
+      super.onCreate(savedInstanceState);
+      // Set by <content src="index.html" /> in config.xml
+      loadUrl(launchUrl);
+  }
+
+  @Override
+  protected void onStart() {
+      super.onStart();
+      Marketo.onStart(this);
+  }
+
+  @Override
+  protected void onStop() {
+      super.onStop();
+      Marketo.onStop(this);
+  }
+```
+2.
+```javascript
+  //Add the following code in your www/js/index.js
+  
+  bindEvents: function() {
+     document.addEventListener('deviceready', this.onDeviceReady, false);
+     document.addEventListener(‘pause’, this.onStop, false);
+     document.addEventListener(‘’resume, this.onStart, false);
+  },
+  onStop: function() {
+     marketo.onStop(
+     function(){console.log("onStop");},
+     function(error){console.log("Failed to report onStop." + error);});
+  },
+  onStart: function() {
+     marketo.onStart(
+     function(){console.log("onStart.");},
+     function(error){console.log("Failed to report onStart." + error);});
+  },
+  ```
