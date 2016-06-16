@@ -171,7 +171,7 @@
         NSString* leadData = [command.arguments objectAtIndex:0] ;
         NSError * error;
         if([self isObjectnull:leadData]){
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Can not report data, issue with report data"];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Failed to associate lead"];
             return ;
         }
         NSDictionary *leadDictinary = [NSJSONSerialization JSONObjectWithData:[leadData dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers error:&error];
@@ -181,7 +181,7 @@
             [[Marketo sharedInstance] associateLead:lead];
             pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         }else{
-            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Can not report data, issue with report data"];
+            pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Failed to associate lead"];
         }
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     });
