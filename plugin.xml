@@ -9,7 +9,7 @@
  <keywords>phonegap, Marketo</keywords>
  <preference name="APPLICATION_SECRET_KEY"/>
 
-<js-module src="www/Marketo.js" name="MarketoPlugin">
+<js-module src="www/marketo.js" name="MarketoPlugin">
   <clobbers target="window.marketo" />
 </js-module>
 
@@ -115,9 +115,9 @@
   <resource-file src="framework/MKTResources.bundle"/>
 
   <info>
-      We are using application secret key ='$APPLICATION_SECRET_KEY' to configure your Marketo PhoneGap plugin for iOS.
-
-      Successfully added Marketo PhoneGap Plugin for iOS.
+      1. We are using application secret key ='$APPLICATION_SECRET_KEY' to configure your Marketo PhoneGap plugin for iOS.
+      2. Adding new URL schedule to handle test devices registration.
+      3. Successfully added Marketo PhoneGap Plugin for iOS.
   </info>
 
 </platform>

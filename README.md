@@ -11,6 +11,10 @@ v0.5.0
 - All features available from MME SDK version 0.5.x
 - Small bug fixes
 
+Contributing Code
+
+We accept pull requests! Please raise a merge request.
+
 Installtion instrunction.
 
 1. Get your application secret key from Marketo admin portal
