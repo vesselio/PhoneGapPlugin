@@ -15,11 +15,17 @@ Contributing Code
 
 We accept pull requests! Please raise a merge request.
 
-Installtion instrunction.
+## Marketo PhoneGap Plugin Installation Guide 
 
-1. Get your application secret key from Marketo admin portal
-2. Then go to your project folder
-3. Run following command to add Marketo PhoneGap Plugin
+### Prerequisites 
+1.  Register an application in Marketo Admin portal, get your application secret key and munchkin id.
+2.  Configure Android Push access [learn here](https://docs.marketo.com/display/public/DOCS/Configure+Mobile+App+iOS+Push+Access)
+3.  Configure iOS Push access [learn here](https://docs.marketo.com/display/public/DOCS/Configure+Mobile+App+iOS+Push+Access)
 
-cordova plugin add ~/Development/source/PhoneGapPlugin/ --variable APPLICATION_SECRET_KEY="YOUR_APPLICATION_SECRET"
+### Plugin Setup
+1.  Install Marketo PhoneGap Plugin using PhoneGap/Cordova CLI: Please follow below steps or ensure you have latest cordova version installed on the system [learn more](https://cordova.apache.org/docs/en/latest/guide/cli/)
+2.  Once it’s ready go to your PhoneGap application directory and run following command.
 
+cordova plugin add https://github.com/Marketo/PhoneGapPlugin.git --variable APPLICATION_SECRET_KEY="YOUR_APPLICATION_SECRET"
+
+This will add Marketo Plugin into your phonegap application.
