@@ -111,24 +111,7 @@
   <info>
       We are using application secret key ='$APPLICATION_SECRET_KEY' to configure your Marketo PhoneGap plugin for iOS.
 
-      Successfully added Marketo PhoneGap Plugin for iOS. To complete the integration you need 
-
-      1. Install Cocoapods by running 'sudo gem install cocoapods'
-      2. Goto iOS Project folder
-      3. now run 'pod init' command, this will create a Podfile.
-      3. Open the Podfile and add the following line at the start of Podfile.
-      
-          platform :ios, '6.0'
-      
-      4. Then find the project target and add following
-      
-          pod 'Marketo-iOS-SDK'
-      
-      5. Save the pod file and run following command
-      
-          pod install
-
-      6. Once installation is done, open YourProjectName.xcworkspace
+      Successfully added Marketo PhoneGap Plugin for iOS.
   </info>
 
 </platform>
