@@ -67,6 +67,7 @@
     });
 }
 
+//if action is initializeMarketoPush then it will initialize the Push notification service for the app
 - (void) initializeMarketoPush:(CDVInvokedUrlCommand*)command{
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
     UIApplication *application = [UIApplication sharedApplication];

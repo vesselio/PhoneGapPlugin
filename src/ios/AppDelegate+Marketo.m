@@ -11,6 +11,7 @@
 @implementation AppDelegate (Marketo)
 
 
+// To handle deeplink received from Marketo.
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     return [[Marketo sharedInstance] application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
@@ -25,16 +26,19 @@
 
 #endif
 
+// Will update the Push Token received from apns.
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     [[Marketo sharedInstance] registerPushDeviceToken:deviceToken];
 }
 
+// To handle Push notifications received from marketo.
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     [[Marketo sharedInstance] handlePushNotification:userInfo];
 }
 
+// To handle Local notifications received from marketo.
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
     [[Marketo sharedInstance] application:application didReceiveLocalNotification:notification];
