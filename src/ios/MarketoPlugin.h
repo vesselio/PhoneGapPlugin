@@ -5,6 +5,7 @@
 @interface MarketoPlugin : CDVPlugin
 
 - (void)initialize:(CDVInvokedUrlCommand*)command;
+- (void) initializeMarketoPush:(CDVInvokedUrlCommand*)command;
 - (void)resume:(CDVInvokedUrlCommand*)command;
 - (void)pause:(CDVInvokedUrlCommand*)command;
 - (void) settimeout:(CDVInvokedUrlCommand*)command;
