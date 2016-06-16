@@ -100,6 +100,13 @@
   <header-file src="src/ios/MarketoPlugin.h"/>
   <source-file src="src/ios/MarketoPlugin.m"/>
 
+  <!-- system frameworks -->
+  <framework src="libsqlite3.dylib" />
+
+  <!-- Marketo framework -->
+  <framework src="framework/Marketo.framework" custom="true" />
+
+  <resource-file src="framework/MKTResources.bundle"/>
 
   <info>
       We are using application secret key ='$APPLICATION_SECRET_KEY' to configure your Marketo PhoneGap plugin for iOS.
