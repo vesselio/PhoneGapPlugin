@@ -48,4 +48,19 @@ marketo.initialize(
   	'YOUR_MUNCHKIN_ID', 'YOUR_SECRET_KEY'
 );
 ```
+### Initialize Marketo Push Notification : 
+1.  After Initializing Marketo SDK successfully , you need to setup push notification.
+2.  Open your main js file and Add the following code under “onDeviceReady: function()” after marketo.initialize function.
+
+```javascript
+// This function will Enable user notifications (will prompt the user to accept push notifications in iOS)
+marketo. initializeMarketoPush(
+  function() { console.log("Marketo push successfully initialized."); } ,
+  function(error) { console.log("an error occurred:" + error); },
+  GCM_PROJECT_ID // this is required for Android and will be ignored in iOS
+);
+```
+Note: You can get your GCM Project ID from Google Developer Console https://console.developers.google.com/
+
+
 
