@@ -100,6 +100,12 @@
   <header-file src="src/ios/MarketoPlugin.h"/>
   <source-file src="src/ios/MarketoPlugin.m"/>
 
+
+<source-file src="src/ios/AppDelegate+Marketo.m" />
+<header-file src="src/ios/AppDelegate+Marketo.h" />
+ 
+
+
   <!-- system frameworks -->
   <framework src="libsqlite3.dylib" />
 
