@@ -110,9 +110,8 @@ Note: You can get your GCM Project ID from Google Developer Console https://cons
   );
 ```
 ### Reporting Start and Stop of activity for analytics (Android Specific)
-There are two ways by which we can achive reporting analytics 
-
-1. 
+There are two ways by which we can report application analytics
+ 
 ```java
   //In CordovaActivity from the platform/android/src/package name/MainActivity.java 
   @Override
@@ -134,7 +133,7 @@ There are two ways by which we can achive reporting analytics
       Marketo.onStop(this);
   }
 ```
-2.
+##OR
 ```javascript
   //Add the following code in your www/js/index.js
   
