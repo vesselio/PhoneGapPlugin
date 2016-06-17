@@ -109,8 +109,8 @@ Note: You can get your GCM Project ID from Google Developer Console https://cons
     JSON.stringify(event)
   );
 ```
-### Reporting Start and Stop of activity for analitics (Android Specific)
-There are two ways by which we can achive reporting analitics 
+### Reporting Start and Stop of activity for analytics (Android Specific)
+There are two ways by which we can achive reporting analytics 
 
 1. 
 ```java
