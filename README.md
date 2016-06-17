@@ -62,5 +62,72 @@ marketo. initializeMarketoPush(
 ```
 Note: You can get your GCM Project ID from Google Developer Console https://console.developers.google.com/
 
+### Marketo Associate Lead:
+1.  You can create a Marketo Lead by calling associate lead method.
 
+```javascript
+  // First create a lead as below
+  var lead = {};
+  lead_obj[marketo.KEY_FIRST_NAME]= "John";
+  lead_obj[marketo.KEY_LAST_NAME]= "Erickson";
+  lead_obj[marketo.KEY_EMAIL]= "johnE@marketo.com";
+  lead_obj[marketo.KEY_ADDRESS]= "901 Mariners Island Boulevard";
+  lead_obj[marketo.KEY_CITY]= "San Mateo";
+  lead_obj[marketo.KEY_STATE]= "CA";
+  lead_obj[marketo.KEY_COUNTRY]= "USA";
+  lead_obj[marketo.KEY_POSTAL_CODE]= "94404";
+  lead_obj[marketo.KEY_GENDER]= "Male";
+  
+  // Use associate function to associate it.
+  marketo.associateLead(
+    function() {
+      console.log("MarketoSDK : Lead Associated");
+    },
+    function(error) {
+      console.log("an error occurred:" + error);
+    },
+    JSON.stringify(lead)
+  );
+```
 
+### Marketo Report Action:
+1.  You can report any user performed action by calling the reportaction method.
+
+```javascript
+  // First create an event as below
+  var event = {
+    "Action Type":"Add To Cart",
+    "Action Details":"Adding Product in cart",
+    "Action Metric":"10",
+    "Action Length":"1"
+  }
+
+  marketo.reportaction(
+    function(){console.log("Reported Action Successfully.");},
+    function(error){console.log("Failed to report Action." + error);},
+    "Add To Cart",
+    JSON.stringify(event)
+  );
+```
+### Marketo session reporting
+1.  Bind pause and resume events as show below to report Start and stop to track time spent in mobile application.(Note this is required in android)
+.
+```javascript
+  //Add the following code in your www/js/index.js
+  
+  bindEvents: function() {
+     document.addEventListener('deviceready', this.onDeviceReady, false);
+     document.addEventListener(‘pause’, this.onStop, false);
+     document.addEventListener(‘’resume, this.onStart, false);
+  },
+  onStop: function() {
+     marketo.onStop(
+     function(){console.log("onStop");},
+     function(error){console.log("Failed to report onStop." + error);});
+  },
+  onStart: function() {
+     marketo.onStart(
+     function(){console.log("onStart.");},
+     function(error){console.log("Failed to report onStart." + error);});
+  },
+  ```
