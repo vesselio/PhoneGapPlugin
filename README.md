@@ -109,32 +109,9 @@ Note: You can get your GCM Project ID from Google Developer Console https://cons
     JSON.stringify(event)
   );
 ```
-### Reporting Start and Stop of activity for analytics (Android Specific)
-There are two ways by which we can achive reporting analytics 
-
-1. 
-```java
-  //In CordovaActivity from the platform/android/src/package name/MainActivity.java 
-  @Override
-  public void onCreate(Bundle savedInstanceState){
-      super.onCreate(savedInstanceState);
-      // Set by <content src="index.html" /> in config.xml
-      loadUrl(launchUrl);
-  }
-
-  @Override
-  protected void onStart() {
-      super.onStart();
-      Marketo.onStart(this);
-  }
-
-  @Override
-  protected void onStop() {
-      super.onStop();
-      Marketo.onStop(this);
-  }
-```
-2.
+### Marketo session reporting
+1.  Bind pause and resume events as show below to report Start and stop to track time spent in mobile application.(Note this is required in android)
+.
 ```javascript
   //Add the following code in your www/js/index.js
   
