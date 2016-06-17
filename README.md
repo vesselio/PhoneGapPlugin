@@ -90,14 +90,67 @@ Note: You can get your GCM Project ID from Google Developer Console https://cons
   );
 ```
 
-### Marketo Report Actions:
-1.  To report custom action use following function.
+### Marketo Report Action:
+1.  You can report any user performed action by calling the reportaction method.
 
 ```javascript
-marketo.reportaction(
-  function(){console.log("MarketoSDK : New action reported");},
-  function(error){ console.log("an error occurred:" + error); },
-  'CUSTOM_ACTION_NAME','ACTION_META_DATA_STRING'
-);
+  // First create an event as below
+  var event = {
+    "Action Type":"Add To Cart",
+    "Action Details":"Adding Product in cart",
+    "Action Metric":"10",
+    "Action Length":"1"
+  }
 
+  marketo.reportaction(
+    function(){console.log("Reported Action Successfully.");},
+    function(error){console.log("Failed to report Action." + error);},
+    "Add To Cart",
+    JSON.stringify(event)
+  );
 ```
+### Reporting Start and Stop of activity for analytics (Android Specific)
+There are two ways by which we can achive reporting analytics 
+
+1. 
+```java
+  //In CordovaActivity from the platform/android/src/package name/MainActivity.java 
+  @Override
+  public void onCreate(Bundle savedInstanceState){
+      super.onCreate(savedInstanceState);
+      // Set by <content src="index.html" /> in config.xml
+      loadUrl(launchUrl);
+  }
+
+  @Override
+  protected void onStart() {
+      super.onStart();
+      Marketo.onStart(this);
+  }
+
+  @Override
+  protected void onStop() {
+      super.onStop();
+      Marketo.onStop(this);
+  }
+```
+2.
+```javascript
+  //Add the following code in your www/js/index.js
+  
+  bindEvents: function() {
+     document.addEventListener('deviceready', this.onDeviceReady, false);
+     document.addEventListener(‘pause’, this.onStop, false);
+     document.addEventListener(‘’resume, this.onStart, false);
+  },
+  onStop: function() {
+     marketo.onStop(
+     function(){console.log("onStop");},
+     function(error){console.log("Failed to report onStop." + error);});
+  },
+  onStart: function() {
+     marketo.onStart(
+     function(){console.log("onStart.");},
+     function(error){console.log("Failed to report onStart." + error);});
+  },
+  ```
