@@ -49,7 +49,7 @@ cordova plugin add https://github.com/Marketo/PhoneGapPlugin.git --variable APPL
 
 This will add Marketo Plugin into your phonegap application.
 
-### Initialize Marketo Framework
+## Initialize Marketo Framework
 1.  After successful installation, you need to initialize Marketo framework.
 2.  Open your main js file and Add the following code under “onDeviceReady: function()”. 
 
