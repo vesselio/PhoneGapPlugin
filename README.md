@@ -28,11 +28,24 @@ Please contact <developerfeedback@marketo.com> for any issues integrating or usi
 2.  Configure Android Push access [learn here](https://docs.marketo.com/display/public/DOCS/Configure+Mobile+App+iOS+Push+Access)
 3.  Configure iOS Push access [learn here](https://docs.marketo.com/display/public/DOCS/Configure+Mobile+App+iOS+Push+Access)
 
-### Plugin Setup
+### Setup Marketo PhoneGap plugin
+
 1.  Install Marketo PhoneGap Plugin using PhoneGap/Cordova CLI: Please follow below steps or ensure you have latest cordova version installed on the system [learn more](https://cordova.apache.org/docs/en/latest/guide/cli/)
 2.  Once it’s ready go to your PhoneGap application directory and run following command.
 
+```javascript
 cordova plugin add https://github.com/Marketo/PhoneGapPlugin.git --variable APPLICATION_SECRET_KEY="YOUR_APPLICATION_SECRET"
+```
+
+### Migrate to newer version
+
+```javascript
+// This command will remove existing marketo plugin
+cordova plugin remove com.marketo.plugin
+
+// This command will add it again.
+cordova plugin add https://github.com/Marketo/PhoneGapPlugin.git --variable APPLICATION_SECRET_KEY="YOUR_APPLICATION_SECRET"
+```
 
 This will add Marketo Plugin into your phonegap application.
 
@@ -131,3 +144,4 @@ Note: You can get your GCM Project ID from Google Developer Console https://cons
      function(error){console.log("Failed to report onStart." + error);});
   },
   ```
+
