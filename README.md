@@ -67,7 +67,7 @@ Note: You can get your GCM Project ID from Google Developer Console https://cons
 
 ```javascript
   // First create a lead as below
-  var lead = {};
+  var lead_obj = {};
   lead_obj[marketo.KEY_FIRST_NAME]= "John";
   lead_obj[marketo.KEY_LAST_NAME]= "Erickson";
   lead_obj[marketo.KEY_EMAIL]= "johnE@marketo.com";
@@ -86,7 +86,7 @@ Note: You can get your GCM Project ID from Google Developer Console https://cons
     function(error) {
       console.log("an error occurred:" + error);
     },
-    JSON.stringify(lead)
+    JSON.stringify(lead_obj)
   );
 ```
 
@@ -139,8 +139,8 @@ There are two ways by which we can report application analytics
   
   bindEvents: function() {
      document.addEventListener('deviceready', this.onDeviceReady, false);
-     document.addEventListener(‘pause’, this.onStop, false);
-     document.addEventListener(‘’resume, this.onStart, false);
+     document.addEventListener('pause', this.onStop, false);
+     document.addEventListener('resume', this.onStart, false);
   },
   onStop: function() {
      marketo.onStop(
