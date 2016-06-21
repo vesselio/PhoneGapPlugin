@@ -21,11 +21,11 @@ We accept pull requests! Please raise a merge request.
 
 Please contact <developerfeedback@marketo.com> for any issues integrating or using this plugin.
 
-## Marketo PhoneGap Plugin Installation Guide 
+## Marketo PhoneGap Plugin Installation Guide
 
-### Prerequisites 
+### Prerequisites
 1.  Register an application in Marketo Admin portal, get your application secret key and munchkin id.
-2.  Configure Android Push access [learn here](https://docs.marketo.com/display/public/DOCS/Configure+Mobile+App+iOS+Push+Access)
+2.  Configure Android Push access [learn here](http://docs.marketo.com/display/public/DOCS/Configure+Mobile+App+Android+Push+Access)
 3.  Configure iOS Push access [learn here](https://docs.marketo.com/display/public/DOCS/Configure+Mobile+App+iOS+Push+Access)
 
 ### Setup Marketo PhoneGap plugin
@@ -51,7 +51,7 @@ This will add Marketo Plugin into your phonegap application.
 
 ## Initialize Marketo Framework
 1.  After successful installation, you need to initialize Marketo framework.
-2.  Open your main js file and Add the following code under “onDeviceReady: function()”. 
+2.  Open your main js file and Add the following code under “onDeviceReady: function()”.
 
 ```javascript
 // This method will Initialize the Marketo Framework using Your MunchkinId and secret key
@@ -61,7 +61,7 @@ marketo.initialize(
   	'YOUR_MUNCHKIN_ID', 'YOUR_SECRET_KEY'
 );
 ```
-### Initialize Marketo Push Notification : 
+### Initialize Marketo Push Notification :
 1.  After Initializing Marketo SDK successfully , you need to setup push notification.
 2.  Open your main js file and Add the following code under “onDeviceReady: function()” after marketo.initialize function.
 
@@ -80,7 +80,7 @@ Note: You can get your GCM Project ID from Google Developer Console https://cons
 
 ```javascript
   // First create a lead as below
-  var lead = {};
+  var lead_obj = {};
   lead_obj[marketo.KEY_FIRST_NAME]= "John";
   lead_obj[marketo.KEY_LAST_NAME]= "Erickson";
   lead_obj[marketo.KEY_EMAIL]= "johnE@marketo.com";
@@ -90,7 +90,7 @@ Note: You can get your GCM Project ID from Google Developer Console https://cons
   lead_obj[marketo.KEY_COUNTRY]= "USA";
   lead_obj[marketo.KEY_POSTAL_CODE]= "94404";
   lead_obj[marketo.KEY_GENDER]= "Male";
-  
+
   // Use associate function to associate it.
   marketo.associateLead(
     function() {
@@ -99,7 +99,7 @@ Note: You can get your GCM Project ID from Google Developer Console https://cons
     function(error) {
       console.log("an error occurred:" + error);
     },
-    JSON.stringify(lead)
+    JSON.stringify(lead_obj)
   );
 ```
 
@@ -127,11 +127,11 @@ Note: You can get your GCM Project ID from Google Developer Console https://cons
 .
 ```javascript
   //Add the following code in your www/js/index.js
-  
+
   bindEvents: function() {
      document.addEventListener('deviceready', this.onDeviceReady, false);
-     document.addEventListener(‘pause’, this.onStop, false);
-     document.addEventListener(‘’resume, this.onStart, false);
+     document.addEventListener('pause', this.onStop, false);
+     document.addEventListener('resume', this.onStart, false);
   },
   onStop: function() {
      marketo.onStop(
@@ -144,4 +144,3 @@ Note: You can get your GCM Project ID from Google Developer Console https://cons
      function(error){console.log("Failed to report onStart." + error);});
   },
   ```
-
