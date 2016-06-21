@@ -25,7 +25,7 @@ Please contact <developerfeedback@marketo.com> for any issues integrating or usi
 
 ### Prerequisites
 1.  Register an application in Marketo Admin portal, get your application secret key and munchkin id.
-2.  Configure Android Push access [learn here](https://docs.marketo.com/display/public/DOCS/Configure+Mobile+App+iOS+Push+Access)
+2.  Configure Android Push access [learn here](http://docs.marketo.com/display/public/DOCS/Configure+Mobile+App+Android+Push+Access)
 3.  Configure iOS Push access [learn here](https://docs.marketo.com/display/public/DOCS/Configure+Mobile+App+iOS+Push+Access)
 
 ### Setup Marketo PhoneGap plugin
