@@ -60,6 +60,12 @@ marketo.initialize(
   	function(error) { console.log("an error occurred:" + error); },
   	'YOUR_MUNCHKIN_ID', 'YOUR_SECRET_KEY'
 );
+
+// For session tracking, please add following. 
+marketo.onStart(
+  function(){console.log("onStart.");},
+  function(error){console.log("Failed to report onStart." + error);}
+);
 ```
 ### Initialize Marketo Push Notification :
 1.  After Initializing Marketo SDK successfully , you need to setup push notification.
