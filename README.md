@@ -21,24 +21,37 @@ We accept pull requests! Please raise a merge request.
 
 Please contact <developerfeedback@marketo.com> for any issues integrating or using this plugin.
 
-## Marketo PhoneGap Plugin Installation Guide 
+## Marketo PhoneGap Plugin Installation Guide
 
-### Prerequisites 
+### Prerequisites
 1.  Register an application in Marketo Admin portal, get your application secret key and munchkin id.
 2.  Configure Android Push access [learn here](https://docs.marketo.com/display/public/DOCS/Configure+Mobile+App+iOS+Push+Access)
 3.  Configure iOS Push access [learn here](https://docs.marketo.com/display/public/DOCS/Configure+Mobile+App+iOS+Push+Access)
 
-### Plugin Setup
+### Setup Marketo PhoneGap plugin
+
 1.  Install Marketo PhoneGap Plugin using PhoneGap/Cordova CLI: Please follow below steps or ensure you have latest cordova version installed on the system [learn more](https://cordova.apache.org/docs/en/latest/guide/cli/)
 2.  Once it’s ready go to your PhoneGap application directory and run following command.
 
+```javascript
 cordova plugin add https://github.com/Marketo/PhoneGapPlugin.git --variable APPLICATION_SECRET_KEY="YOUR_APPLICATION_SECRET"
+```
+
+### Migrate to newer version
+
+```javascript
+// This command will remove existing marketo plugin
+cordova plugin remove com.marketo.plugin
+
+// This command will add it again.
+cordova plugin add https://github.com/Marketo/PhoneGapPlugin.git --variable APPLICATION_SECRET_KEY="YOUR_APPLICATION_SECRET"
+```
 
 This will add Marketo Plugin into your phonegap application.
 
-### Initialize Marketo Framework
+## Initialize Marketo Framework
 1.  After successful installation, you need to initialize Marketo framework.
-2.  Open your main js file and Add the following code under “onDeviceReady: function()”. 
+2.  Open your main js file and Add the following code under “onDeviceReady: function()”.
 
 ```javascript
 // This method will Initialize the Marketo Framework using Your MunchkinId and secret key
@@ -48,7 +61,7 @@ marketo.initialize(
   	'YOUR_MUNCHKIN_ID', 'YOUR_SECRET_KEY'
 );
 ```
-### Initialize Marketo Push Notification : 
+### Initialize Marketo Push Notification :
 1.  After Initializing Marketo SDK successfully , you need to setup push notification.
 2.  Open your main js file and Add the following code under “onDeviceReady: function()” after marketo.initialize function.
 
@@ -77,7 +90,7 @@ Note: You can get your GCM Project ID from Google Developer Console https://cons
   lead_obj[marketo.KEY_COUNTRY]= "USA";
   lead_obj[marketo.KEY_POSTAL_CODE]= "94404";
   lead_obj[marketo.KEY_GENDER]= "Male";
-  
+
   // Use associate function to associate it.
   marketo.associateLead(
     function() {
@@ -109,34 +122,12 @@ Note: You can get your GCM Project ID from Google Developer Console https://cons
     JSON.stringify(event)
   );
 ```
-### Reporting Start and Stop of activity for analytics (Android Specific)
-There are two ways by which we can report application analytics
- 
-```java
-  //In CordovaActivity from the platform/android/src/package name/MainActivity.java 
-  @Override
-  public void onCreate(Bundle savedInstanceState){
-      super.onCreate(savedInstanceState);
-      // Set by <content src="index.html" /> in config.xml
-      loadUrl(launchUrl);
-  }
-
-  @Override
-  protected void onStart() {
-      super.onStart();
-      Marketo.onStart(this);
-  }
-
-  @Override
-  protected void onStop() {
-      super.onStop();
-      Marketo.onStop(this);
-  }
-```
-##OR
+### Marketo session reporting
+1.  Bind pause and resume events as show below to report Start and stop to track time spent in mobile application.(Note this is required in android)
+.
 ```javascript
   //Add the following code in your www/js/index.js
-  
+
   bindEvents: function() {
      document.addEventListener('deviceready', this.onDeviceReady, false);
      document.addEventListener('pause', this.onStop, false);
