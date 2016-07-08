@@ -67,8 +67,8 @@ public class MarketoPlugin extends CordovaPlugin {
 
                     @Override
                     public void run() {
+ 			marketo.setPhonegapCurrentActivity(activityContext);
                         marketo.initializeSDK(MUCHKIN_ID, SECRET_KEY);
-                        marketo.setPhonegapCurrentActivity(activityContext);
                         callbackContext.success();
                     }
                 });
