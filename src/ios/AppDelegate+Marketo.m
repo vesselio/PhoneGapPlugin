@@ -44,6 +44,10 @@
     [[Marketo sharedInstance] application:application didReceiveLocalNotification:notification];
 }
 
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    NSLog(@"Unable to get push token ******-> %@", error);
+}
+
 
 
 @end
