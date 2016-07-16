@@ -3,6 +3,10 @@
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).  
 
 ## Change Log
+v0.6.3
+
+- InApp Notifications display once supported added
+- fixed issue with PhoneGap android 
 
 v0.6.0
 
