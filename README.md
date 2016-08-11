@@ -23,7 +23,7 @@ We accept pull requests! Please raise a merge request.
 
 ## Issues
 
-Please contact <developerfeedback@marketo.com> for any issues integrating or using this plugin.
+If you encounter issues using or integrating this plugin, please file a support ticket at support.marketo.com
 
 ## Marketo PhoneGap Plugin Installation Guide
 
