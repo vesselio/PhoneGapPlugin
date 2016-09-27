@@ -213,6 +213,16 @@ public class MarketoPlugin extends CordovaPlugin {
                     }
                 });
                 return true;
+            } else if ("reportAll".equals(action)) {
+                this.cordova.getThreadPool().execute(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        Marketo.reportAll();
+                        callbackContext.success();
+                    }
+                });
+                return true;
             }
             return false;
         } catch (Exception e) {
@@ -340,5 +350,3 @@ public class MarketoPlugin extends CordovaPlugin {
         return lead;
     }
 }
-
-
