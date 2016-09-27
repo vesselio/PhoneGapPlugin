@@ -3,6 +3,10 @@
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).  
 
 ## Change Log
+v0.6.3
+
+- InApp Notifications display once supported added
+- fixed issue with PhoneGap android 
 
 v0.6.0
 
@@ -19,7 +23,7 @@ We accept pull requests! Please raise a merge request.
 
 ## Issues
 
-Please contact <developerfeedback@marketo.com> for any issues integrating or using this plugin.
+If you encounter issues using or integrating this plugin, please file a support ticket at support.marketo.com
 
 ## Marketo PhoneGap Plugin Installation Guide
 
@@ -59,6 +63,12 @@ marketo.initialize(
   	function() { console.log("MarketoSDK Init done."); } ,
   	function(error) { console.log("an error occurred:" + error); },
   	'YOUR_MUNCHKIN_ID', 'YOUR_SECRET_KEY'
+);
+
+// For session tracking, please add following. 
+marketo.onStart(
+  function(){console.log("onStart.");},
+  function(error){console.log("Failed to report onStart." + error);}
 );
 ```
 ### Initialize Marketo Push Notification :

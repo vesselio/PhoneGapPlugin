@@ -89,16 +89,20 @@
 }
 
 //if action is resume then it will send the resume action to MarketoSDK
-- (void)resume:(CDVInvokedUrlCommand*)command
+- (void)onStart:(CDVInvokedUrlCommand*)command
 {
+    // For iOS we handle it automatically. 
+    // Added this call to keep it consistent with android.
     CDVPluginResult* pluginResult = nil;
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 //if action is pause then it will send the pause action to MarketoSDK
-- (void)pause:(CDVInvokedUrlCommand*)command
+- (void)onStop:(CDVInvokedUrlCommand*)command
 {
+    // For iOS we handle it automatically. 
+    // Added this call to keep it consistent with android.
     CDVPluginResult* pluginResult = nil;
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
