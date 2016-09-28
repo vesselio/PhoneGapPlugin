@@ -237,7 +237,7 @@
 - (void) reportAll:(CDVInvokedUrlCommand*)command{
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-        [[Marketo sharedInstance] reportAll]
+        [[Marketo sharedInstance] reportAll];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     });
 }
