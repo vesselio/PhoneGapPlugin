@@ -201,6 +201,15 @@ var marketo = {
       return cordova.exec(success, fail,
         "MarketoPlugin",
         "settimeout", [timeout]);
+    },
+
+    /**
+    * Call this method when user wants to force report all custom action and events along with there respective metadata
+    */
+    reportAll: function(success, fail){
+      return cordova.exec(success,fail,
+      "MarketoPlugin",
+      "reportAll", []);
     }
 }
 module.exports = marketo;
