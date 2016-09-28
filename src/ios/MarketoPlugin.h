@@ -4,11 +4,16 @@
 
 @interface MarketoPlugin : CDVPlugin
 
-- (void)initialize:(CDVInvokedUrlCommand*)command;
-- (void)resume:(CDVInvokedUrlCommand*)command;
-- (void)pause:(CDVInvokedUrlCommand*)command;
-- (void) settimeoutinterval:(CDVInvokedUrlCommand*)command;
+- (void) initialize:(CDVInvokedUrlCommand*)command;
+- (void) initializeMarketoPush:(CDVInvokedUrlCommand*)command;
+- (void) onStart:(CDVInvokedUrlCommand*)command;
+- (void) onStop:(CDVInvokedUrlCommand*)command;
+- (void) settimeout:(CDVInvokedUrlCommand*)command;
 - (void) reportaction:(CDVInvokedUrlCommand*)command;
-- (void) associatelead:(CDVInvokedUrlCommand*)command;
-
+- (void) associateLead:(CDVInvokedUrlCommand*)command;
+- (void) setSecureSignature:(CDVInvokedUrlCommand*)command;
+- (void) removeSecureSignature:(CDVInvokedUrlCommand*)command;
+- (void) getDeviceId:(CDVInvokedUrlCommand*)command;
+- (void) isSecureModeEnabled:(CDVInvokedUrlCommand*)command;
+- (void) reportAll:(CDVInvokedUrlCommand*)command;
 @end
