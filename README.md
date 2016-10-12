@@ -3,6 +3,14 @@
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).  
 
 ## Change Log
+v0.7.0
+
+- Supporting Android Version 7.0
+
+v0.6.4
+
+- Exposed method reportAll to immediately send events
+
 v0.6.3
 
 - InApp Notifications display once supported added
@@ -132,6 +140,17 @@ Note: You can get your GCM Project ID from Google Developer Console https://cons
     JSON.stringify(event)
   );
 ```
+
+###Marketo Report All Actions:
+1.  You can report any user performed action by calling the reportaction method.
+
+```javascript
+  marketo.reportAll(
+    function(){console.log("Reported All Actions Successfully.");},
+    function(error){console.log("Failed to report Actions." + error);}
+  );
+```
+
 ### Marketo session reporting
 1.  Bind pause and resume events as show below to report Start and stop to track time spent in mobile application.(Note this is required in android)
 .
