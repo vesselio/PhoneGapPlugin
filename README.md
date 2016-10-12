@@ -6,6 +6,7 @@ The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).
 v0.7.0
 
 - Supporting Android Version 7.0
+- In iOS Using UNNotification to handle push received while app is in foreground with a local notificaiton
 
 v0.6.4
 
