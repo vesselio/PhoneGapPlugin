@@ -48,6 +48,30 @@
     NSLog(@"Unable to get push token ******-> %@", error);
 }
 
+#if XCODE_VERSION_GREATER_THAN_OR_EQUAL_TO_8
+
+// The method will be called on the delegate only if the application is in the foreground. If the method is not implemented or the handler is not called in a timely manner then the notification will not be presented. The application can choose to have the notification presented as a sound, badge, alert and/or in the notification list. This decision should be based on whether the information in the notification is otherwise visible to the user.
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+       willPresentNotification:(UNNotification *)notification
+         withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler {
+    NSLog(@"Notification is triggered");
+
+    // You can either present alert, sound or increase badge while the app is in foreground too with iOS 10
+    // Must be called when finished, when you do not want foreground show, pass UNNotificationPresentationOptionNone to the completionHandler()
+    completionHandler(UNNotificationPresentationOptionAlert);
+    // completionHandler(UNNotificationPresentationOptionBadge);
+    // completionHandler(UNNotificationPresentationOptionSound);
+}
+
+// The method will be called on the delegate when the user responded to the notification by opening the application, dismissing the notification or choosing a UNNotificationAction. The delegate must be set before the application returns from applicationDidFinishLaunching:.
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+didReceiveNotificationResponse:(UNNotificationResponse *)response
+         withCompletionHandler:(void(^)())completionHandler {
+    [[Marketo sharedInstance] userNotificationCenter:center didReceiveNotificationResponse:response withCompletionHandler:completionHandler];
+//    completionHandler();
+}
+
+#endif
 
 
 @end
