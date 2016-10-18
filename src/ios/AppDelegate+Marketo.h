@@ -8,6 +8,6 @@
 
 #import "AppDelegate.h"
 
-@interface AppDelegate (Marketo)
+@interface AppDelegate (Marketo) <UNUserNotificationCenterDelegate>
 
 @end
