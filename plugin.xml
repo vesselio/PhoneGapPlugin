@@ -111,6 +111,7 @@
 
   <!-- Marketo framework -->
   <framework src="framework/Marketo.framework" custom="true" />
+  <framework src="framework/UserNotifications.framework" custom="false" />
 
   <resource-file src="framework/MKTResources.bundle"/>
 
