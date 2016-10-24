@@ -10,6 +10,7 @@
 #import <Marketo/Marketo.h>
 @implementation AppDelegate (Marketo)
 
+#define XCODE_VERSION_GREATER_THAN_OR_EQUAL_TO_8    __has_include(<UserNotifications/UserNotifications.h>)
 
 // To handle deeplink received from Marketo.
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
@@ -29,6 +30,16 @@
 // Will update the Push Token received from apns.
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
+#if XCODE_VERSION_GREATER_THAN_OR_EQUAL_TO_8
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    center.delegate = self;
+    [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert)
+        completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            if (!error) {
+                NSLog(@"Local notification request authorization succeeded!");
+            }
+        }];
+#endif
     [[Marketo sharedInstance] registerPushDeviceToken:deviceToken];
 }
 
