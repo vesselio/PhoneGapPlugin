@@ -34,11 +34,11 @@
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     center.delegate = self;
     [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert)
-                          completionHandler:^(BOOL granted, NSError * _Nullable error) {
-                              if (!error) {
-                                  NSLog(@"Local notification request authorization succeeded!");
-                              }
-                          }];
+        completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            if (!error) {
+                NSLog(@"Local notification request authorization succeeded!");
+            }
+        }];
 #endif
     [[Marketo sharedInstance] registerPushDeviceToken:deviceToken];
 }
