@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import <UserNotifications/UserNotifications.h>
-
 @interface AppDelegate (Marketo) <UNUserNotificationCenterDelegate>
 
 @end

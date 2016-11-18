@@ -3,6 +3,11 @@
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).  
 
 ## Change Log
+
+v0.7.1
+- No longer stacking push notifications
+- Catching client protocol exception
+
 v0.7.0
 
 - Supporting Android Version 7.0
