@@ -2,7 +2,7 @@
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         id="com.marketo.plugin"
-        version="0.7.0">
+        version="0.7.2">
  <name>MarketoPlugin</name>
  <description>Marketo plugin</description>
  <license>Apache</license>
@@ -15,7 +15,7 @@
 
 <!-- android -->
 <platform name="android">
-  
+
   <info>
     1.We are using application secret key ='$APPLICATION_SECRET_KEY' to configure your Marketo PhoneGap plugin for Android.
     2.Adding Marketo Activity, Marketo Boradcast Receiver.
@@ -103,7 +103,7 @@
 
 <source-file src="src/ios/AppDelegate+Marketo.m" />
 <header-file src="src/ios/AppDelegate+Marketo.h" />
- 
+
 
 
   <!-- system frameworks -->

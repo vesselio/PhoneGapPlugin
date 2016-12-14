@@ -4,6 +4,12 @@ The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).
 
 ## Change Log
 
+v0.7.2
+- Fixed bug when using Priority method in Android versions previous to 5.0
+- Default sound in Android is now on when user receives a notification
+- Android Push Notification text now wrap to make it more readable
+- Migrated from HttpClient to HttpURLConnection
+
 v0.7.1
 - No longer stacking push notifications
 - Catching client protocol exception
@@ -20,7 +26,7 @@ v0.6.4
 v0.6.3
 
 - InApp Notifications display once supported added
-- fixed issue with PhoneGap android 
+- fixed issue with PhoneGap android
 
 v0.6.0
 
@@ -79,7 +85,7 @@ marketo.initialize(
   	'YOUR_MUNCHKIN_ID', 'YOUR_SECRET_KEY'
 );
 
-// For session tracking, please add following. 
+// For session tracking, please add following.
 marketo.onStart(
   function(){console.log("onStart.");},
   function(error){console.log("Failed to report onStart." + error);}
