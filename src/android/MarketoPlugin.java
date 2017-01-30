@@ -202,6 +202,16 @@ public class MarketoPlugin extends CordovaPlugin {
                     }
                 });
                 return true;
+            } else if ("removeDevicePushToken".equals(action)) {
+                this.cordova.getThreadPool().execute(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        marketo.removeDevicePushToken();
+                        callbackContext.success();
+                    }
+                });
+                return true;
             } else if ("settimeout".equals(action)) {
                 final int TIME_OUT = args.optInt(0);
                 this.cordova.getThreadPool().execute(new Runnable() {

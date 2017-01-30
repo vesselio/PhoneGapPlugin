@@ -210,6 +210,15 @@ var marketo = {
       return cordova.exec(success,fail,
       "MarketoPlugin",
       "reportAll", []);
+    },
+
+    /**
+    * Call this method when user wants to unregister his device for push notification 
+    */
+    removeDevicePushToken: function(success, fail){
+      return cordova.exec(success,fail,
+      "MarketoPlugin",
+      "removeDevicePushToken", []);
     }
 }
 module.exports = marketo;
