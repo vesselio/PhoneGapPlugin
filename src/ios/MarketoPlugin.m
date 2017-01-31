@@ -91,7 +91,7 @@
 //if action is resume then it will send the resume action to MarketoSDK
 - (void)onStart:(CDVInvokedUrlCommand*)command
 {
-    // For iOS we handle it automatically. 
+    // For iOS we handle it automatically.
     // Added this call to keep it consistent with android.
     CDVPluginResult* pluginResult = nil;
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
@@ -101,7 +101,7 @@
 //if action is pause then it will send the pause action to MarketoSDK
 - (void)onStop:(CDVInvokedUrlCommand*)command
 {
-    // For iOS we handle it automatically. 
+    // For iOS we handle it automatically.
     // Added this call to keep it consistent with android.
     CDVPluginResult* pluginResult = nil;
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
@@ -223,6 +223,13 @@
       NSString * deviceId=  [[Marketo sharedInstance] getDeviceId];
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:deviceId];;
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    });
+}
+
+- (void) removeDevicePushToken:(CDVInvokedUrlCommand*)command{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+      [[Marketo sharedInstance] unregisterPushDeviceToken];
+      [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     });
 }
 
