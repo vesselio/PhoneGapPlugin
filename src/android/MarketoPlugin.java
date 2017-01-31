@@ -207,7 +207,7 @@ public class MarketoPlugin extends CordovaPlugin {
 
                     @Override
                     public void run() {
-                        marketo.removeDevicePushToken();
+                        marketo.uninitializeMarketoPush();
                         callbackContext.success();
                     }
                 });
