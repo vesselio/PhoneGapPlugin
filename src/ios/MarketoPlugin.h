@@ -16,5 +16,5 @@
 - (void) getDeviceId:(CDVInvokedUrlCommand*)command;
 - (void) isSecureModeEnabled:(CDVInvokedUrlCommand*)command;
 - (void) reportAll:(CDVInvokedUrlCommand*)command;
-- (void) removeDevicePushToken:(CDVInvokedUrlCommand*)command;
+- (void) uninitializeMarketoPush:(CDVInvokedUrlCommand*)command;
 @end

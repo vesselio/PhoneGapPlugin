@@ -202,7 +202,7 @@ public class MarketoPlugin extends CordovaPlugin {
                     }
                 });
                 return true;
-            } else if ("removeDevicePushToken".equals(action)) {
+            } else if ("uninitializeMarketoPush".equals(action)) {
                 this.cordova.getThreadPool().execute(new Runnable() {
 
                     @Override
