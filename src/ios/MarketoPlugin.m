@@ -229,6 +229,7 @@
 - (void) removeDevicePushToken:(CDVInvokedUrlCommand*)command{
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
       [[Marketo sharedInstance] unregisterPushDeviceToken];
+      CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
       [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     });
 }
