@@ -111,6 +111,21 @@ cordova plugin add https://github.com/Marketo/PhoneGapPlugin.git --variable APPL
 
 This will add Marketo Plugin into your phonegap application.
 
+## Track Push Notifications
+1.  Paste the following code inside the application:didFinishLaunchingWithOptions: function.
+
+###### Objective-C
+```Objective-C
+Marketo *sharedInstance = [Marketo sharedInstance];
+[sharedInstance trackPushNotification:launchOptions];
+
+```
+###### Swift
+```Swift
+let sharedInstance: Marketo = Marketo.sharedInstance()
+sharedInstance.trackPushNotification(launchOptions)
+```
+
 ## Initialize Marketo Framework
 1.  After successful installation, you need to initialize Marketo framework.
 2.  Open your main js file and Add the following code under “onDeviceReady: function()”.
