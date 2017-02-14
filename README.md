@@ -158,6 +158,15 @@ marketo. initializeMarketoPush(
 ```
 Note: You can get your GCM Project ID from Google Developer Console https://console.developers.google.com/
 
+######The token can also be unregistered when user logs out.
+
+```javascript
+marketo. uninitializeMarketoPush(
+  function() { console.log("Marketo push successfully uninitialized."); } ,
+  function(error) { console.log("an error occurred:" + error); }
+);
+```
+
 ### Marketo Associate Lead:
 1.  You can create a Marketo Lead by calling associate lead method.
 
