@@ -111,6 +111,21 @@ cordova plugin add https://github.com/Marketo/PhoneGapPlugin.git --variable APPL
 
 This will add Marketo Plugin into your phonegap application.
 
+## Track Push Notifications
+1.  Paste the following code inside the application:didFinishLaunchingWithOptions: function.
+
+###### Objective-C
+```Objective-C
+Marketo *sharedInstance = [Marketo sharedInstance];
+[sharedInstance trackPushNotification:launchOptions];
+
+```
+###### Swift
+```Swift
+let sharedInstance: Marketo = Marketo.sharedInstance()
+sharedInstance.trackPushNotification(launchOptions)
+```
+
 ## Initialize Marketo Framework
 1.  After successful installation, you need to initialize Marketo framework.
 2.  Open your main js file and Add the following code under “onDeviceReady: function()”.
@@ -142,6 +157,15 @@ marketo. initializeMarketoPush(
 );
 ```
 Note: You can get your GCM Project ID from Google Developer Console https://console.developers.google.com/
+
+######The token can also be unregistered when user logs out.
+
+```javascript
+marketo. uninitializeMarketoPush(
+  function() { console.log("Marketo push successfully uninitialized."); } ,
+  function(error) { console.log("an error occurred:" + error); }
+);
+```
 
 ### Marketo Associate Lead:
 1.  You can create a Marketo Lead by calling associate lead method.
