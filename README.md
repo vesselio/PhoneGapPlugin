@@ -2,7 +2,7 @@
 
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).
 
-## iOS Change Log'
+## iOS Change Log
 
 v0.7.4 (July 7, 2017)
 - Exposed removeDevicePushToken() method
