@@ -4,7 +4,7 @@ The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).
 
 ## iOS Change Log'
 
-v0.7.4 (Upcoming)
+v0.7.4 (July 7, 2017)
 - Exposed removeDevicePushToken() method
 
 v0.7.1 (November 24, 2016)
@@ -32,7 +32,7 @@ v0.5.0
 
 ## Android Change Log
 
-v0.7.3 - v0.7.4 (Upcoming)
+v0.7.3 - v0.7.4 (July 7, 2017)
 - Exposed removeDevicePushToken() method
 - Notifications are now dismissed from the notification center after tap (Android 4.0)
 - Custom large notification icon no longer shows default image (Android 4.0)
