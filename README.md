@@ -1,47 +1,82 @@
 # Marketo Mobile SDK for PhoneGap
 
-The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).  
+The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).
 
-## Change Log
+## iOS Change Log
 
-v0.7.3 - v0.7.4 (Upcoming)
+v0.7.4 (July 7, 2017)
+- Exposed removeDevicePushToken() method
 
+v0.7.1 (November 24, 2016)
+- Handling notification in loadingOptions for iOS 10 to track tap activity when app is closed.
+
+v0.7.0 (October 5, 2016)
+- Using UNNotification to handle push received while app is in foreground with a local notification
+
+v0.6.4 (August 23, 2016)
+- Exposed method [MarketoSDK reportAll] to immediately send events
+
+v0.6.3 (July 15, 2016)
+- Support for InApp display frequnecy once.
+
+v0.6.0 (June, 11 2016)
+- InApp Notifications
+
+v0.5.1 - v0.5.3
+- Fixed new_install bug
+- Fix for version bug
+
+v0.5.0
+- Advanced secure access
+- Bitcode refactor
+
+## Android Change Log
+
+v0.7.5 (July 7, 2017)
+- Fixed bug
+
+v0.7.3 - v0.7.4 (July 7, 2017)
 - Exposed removeDevicePushToken() method
 - Notifications are now dismissed from the notification center after tap (Android 4.0)
 - Custom large notification icon no longer shows default image (Android 4.0)
 
-v0.7.2
+v0.7.2 (November 30, 2016)
 - Fixed bug when using Priority method in Android versions previous to 5.0
 - Default sound in Android is now on when user receives a notification
 - Android Push Notification text now wrap to make it more readable
 - Migrated from HttpClient to HttpURLConnection
 
-v0.7.1
+v0.7.1 (November 4, 2016)
+- Remove GET_ACCOUNTS permission check
 - No longer stacking push notifications
 - Catching client protocol exception
 
-v0.7.0
-
+v0.7.0 (October 13, 2016)
 - Supporting Android Version 7.0
-- In iOS Using UNNotification to handle push received while app is in foreground with a local notificaiton
 
-v0.6.4
+v0.6.4 (August 22, 2016)
+- Exposed method [MarketoSDK reportAll] to immediately send events
 
-- Exposed method reportAll to immediately send events
+v0.6.3 (July 15, 2016)
+- Bug fixes related to inapp
+- added display frequency 'once'
 
-v0.6.3
-
-- InApp Notifications display once supported added
-- fixed issue with PhoneGap android
-
-v0.6.0
-
+v0.6.0 (June 10, 2016)
 - InApp Notifications
 
-v0.5.0
+v0.5.3
+- Fixed bug that stop push notification when app was closed
 
-- All features available from MME SDK version 0.5.x
-- Small bug fixes
+v0.5.2
+- Removed depricated android methods to allow building with Proguard
+
+v0.5.1
+- Fixed intent.getAction condition
+
+v0.5.0
+- New secure access feature
+- New app type selection
+- Android notificaiton config large icon
 
 ## Contributing Code
 
@@ -79,6 +114,21 @@ cordova plugin add https://github.com/Marketo/PhoneGapPlugin.git --variable APPL
 
 This will add Marketo Plugin into your phonegap application.
 
+## Track Push Notifications
+1.  Paste the following code inside the application:didFinishLaunchingWithOptions: function.
+
+###### Objective-C
+```Objective-C
+Marketo *sharedInstance = [Marketo sharedInstance];
+[sharedInstance trackPushNotification:launchOptions];
+
+```
+###### Swift
+```Swift
+let sharedInstance: Marketo = Marketo.sharedInstance()
+sharedInstance.trackPushNotification(launchOptions)
+```
+
 ## Initialize Marketo Framework
 1.  After successful installation, you need to initialize Marketo framework.
 2.  Open your main js file and Add the following code under “onDeviceReady: function()”.
@@ -110,6 +160,15 @@ marketo. initializeMarketoPush(
 );
 ```
 Note: You can get your GCM Project ID from Google Developer Console https://console.developers.google.com/
+
+######The token can also be unregistered when user logs out.
+
+```javascript
+marketo. uninitializeMarketoPush(
+  function() { console.log("Marketo push successfully uninitialized."); } ,
+  function(error) { console.log("an error occurred:" + error); }
+);
+```
 
 ### Marketo Associate Lead:
 1.  You can create a Marketo Lead by calling associate lead method.
