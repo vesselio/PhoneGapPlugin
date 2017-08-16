@@ -32,6 +32,9 @@ v0.5.0
 
 ## Android Change Log
 
+v0.7.5 (July 7, 2017)
+- Fixed bug
+
 v0.7.3 - v0.7.4 (July 7, 2017)
 - Exposed removeDevicePushToken() method
 - Notifications are now dismissed from the notification center after tap (Android 4.0)
