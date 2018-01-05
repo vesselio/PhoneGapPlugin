@@ -104,7 +104,7 @@ If you encounter issues using or integrating this plugin, please file a support 
 
 ### Setup Marketo PhoneGap plugin
 
-1.  Install Marketo PhoneGap Plugin using PhoneGap/Cordova CLI: Please follow below steps or ensure you have latest cordova version installed on the system [learn more](https://cordova.apache.org/docs/en/latest/guide/cli/)(Minimum supported version: 7.1.0)
+1.  Install Marketo PhoneGap Plugin using PhoneGap/Cordova CLI (Minimum supported version: 7.1.0): Please follow below steps or ensure you have latest cordova version installed on the system [learn more](https://cordova.apache.org/docs/en/latest/guide/cli/)
 2.  Once it’s ready go to your PhoneGap application directory and run following command.
 
 ```javascript
