@@ -2,6 +2,12 @@
 
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).
 
+## Plugin Change Log
+
+v0.7.5 (January 4, 2018)
+- Updated iOS bundle and framework
+- Minimum Cordova version requirement is 7.1.0
+
 ## iOS Change Log
 
 v0.7.5 (September 8, 2017)
@@ -98,7 +104,7 @@ If you encounter issues using or integrating this plugin, please file a support 
 
 ### Setup Marketo PhoneGap plugin
 
-1.  Install Marketo PhoneGap Plugin using PhoneGap/Cordova CLI: Please follow below steps or ensure you have latest cordova version installed on the system [learn more](https://cordova.apache.org/docs/en/latest/guide/cli/)
+1.  Install Marketo PhoneGap Plugin using PhoneGap/Cordova CLI: Please follow below steps or ensure you have latest cordova version installed on the system [learn more](https://cordova.apache.org/docs/en/latest/guide/cli/)(Minimum supported version: 7.1.0)
 2.  Once it’s ready go to your PhoneGap application directory and run following command.
 
 ```javascript
