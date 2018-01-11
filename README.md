@@ -123,6 +123,29 @@ cordova plugin add https://github.com/Marketo/PhoneGapPlugin.git --variable APPL
 
 This will add Marketo Plugin into your phonegap application.
 
+### Cordova version 8.0.0
+
+Update the project config.xml with the following two resource paths within the Android platform tags.
+
+```xml
+<platform name="android">
+    <resource-file src="www/img/logo.png" target="app/src/main/assets/icon.png" />
+    <resource-file src="www/img/logo.png" target="app/src/main/res/drawable/icon.png" />
+    <allow-intent href="market:*" />
+</platform>
+```
+
+Once the Cordova anrdoid@7.0.0 platform is built, open the app with Android Studio and update the dirs value of the <APP_NAME>-Marketo.gradle file found in the com.marketo.plugin folder.
+
+```
+repositories{    
+  jcenter()
+  flatDir{
+      dirs '../app/src/main/aar'
+   }
+}
+```
+
 ## Track Push Notifications
 1.  Paste the following code inside the application:didFinishLaunchingWithOptions: function.
 
