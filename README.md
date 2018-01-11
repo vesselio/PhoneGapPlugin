@@ -135,7 +135,7 @@ Update the project config.xml with the following two resource paths within the A
 </platform>
 ```
 
-Once the Cordova anrdoid@7.0.0 platform is built, open the app with Android Studio and update the dirs value of the <APP_NAME>-Marketo.gradle file found in the com.marketo.plugin folder.
+Once the Cordova android@7.0.0 platform is built, open the app with Android Studio and update the dirs value of the <APP_NAME>-Marketo.gradle file found in the com.marketo.plugin folder.
 
 ```
 repositories{    
