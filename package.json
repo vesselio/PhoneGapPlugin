@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Marketo/PhoneGap-Plugin-Debug.git"
+    "url": "git+https://github.com/Marketo/PhoneGapPlugin.git"
   },
   "keywords": [
     "phonegap",
@@ -23,7 +23,7 @@
   "author": "Rudy Gomez",
   "license": "Apache",
   "bugs": {
-    "url": "https://github.com/Marketo/PhoneGap-Plugin-Debug/issues"
+    "url": "https://github.com/Marketo/PhoneGapPlugin/issues"
   },
-  "homepage": "https://github.com/Marketo/PhoneGap-Plugin-Debug#readme"
+  "homepage": "https://github.com/Marketo/PhoneGapPlugin#readme"
 }
