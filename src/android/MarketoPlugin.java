@@ -100,7 +100,7 @@ public class MarketoPlugin extends CordovaPlugin {
 
                     @Override
                     public void run() {
-                        Marketo.onStop(activityContext);
+                        // Marketo.onStop(activityContext);
                         callbackContext.success();
                     }
                 });
@@ -110,7 +110,7 @@ public class MarketoPlugin extends CordovaPlugin {
 
                     @Override
                     public void run() {
-                        Marketo.onStart(activityContext);
+                        // Marketo.onStart(activityContext);
                         callbackContext.success();
                     }
                 });
