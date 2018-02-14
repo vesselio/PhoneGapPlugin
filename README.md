@@ -4,6 +4,10 @@ The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).
 
 ## Plugin Change Log
 
+v0.7.6 (February 12, 2018)
+- Updated Android framework
+- Using Android Activity Lifecycle Callbacks
+
 v0.7.5 (January 4, 2018)
 - Updated iOS bundle and framework
 - Minimum supported Cordova CLI version: 7.1.0
@@ -40,6 +44,12 @@ v0.5.0
 - Bitcode refactor
 
 ## Android Change Log
+
+v0.7.6 (January 18, 2018)
+- Added support for Android API Levels 26 and 27
+- Using Android Activity Lifecycle Callbacks
+- Deprecated Marketo.onStart() and Marketo.onStop(), no longer required
+- The minimum supported Android API Level is now 14
 
 v0.7.5 (July 7, 2017)
 - Fixed bug
