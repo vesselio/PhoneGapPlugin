@@ -2,7 +2,16 @@
 
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).
 
+## Plugin Change Log
+
+v0.7.5 (January 4, 2018)
+- Updated iOS bundle and framework
+- Minimum supported Cordova CLI version: 7.1.0
+
 ## iOS Change Log
+
+v0.7.5 (September 8, 2017)
+- Fixed build errors and warnings in xCode 9
 
 v0.7.4 (July 7, 2017)
 - Exposed removeDevicePushToken() method
@@ -95,7 +104,7 @@ If you encounter issues using or integrating this plugin, please file a support 
 
 ### Setup Marketo PhoneGap plugin
 
-1.  Install Marketo PhoneGap Plugin using PhoneGap/Cordova CLI: Please follow below steps or ensure you have latest cordova version installed on the system [learn more](https://cordova.apache.org/docs/en/latest/guide/cli/)
+1.  Install Marketo PhoneGap Plugin using PhoneGap/Cordova CLI *(Minimum supported version: 7.1.0)*: Please follow below steps or ensure you have latest cordova version installed on the system [learn more](https://cordova.apache.org/docs/en/latest/guide/cli/)
 2.  Once it’s ready go to your PhoneGap application directory and run following command.
 
 ```javascript
@@ -113,6 +122,29 @@ cordova plugin add https://github.com/Marketo/PhoneGapPlugin.git --variable APPL
 ```
 
 This will add Marketo Plugin into your phonegap application.
+
+### Cordova version 8.0.0
+
+Update the project config.xml with the following two resource paths within the Android platform tags.
+
+```xml
+<platform name="android">
+    <resource-file src="www/img/logo.png" target="app/src/main/assets/icon.png" />
+    <resource-file src="www/img/logo.png" target="app/src/main/res/drawable/icon.png" />
+    <allow-intent href="market:*" />
+</platform>
+```
+
+Once the Cordova android@7.0.0 platform is built, open the app with Android Studio and update the dirs value of the <APP_NAME>-Marketo.gradle file found in the com.marketo.plugin folder.
+
+```
+repositories{    
+  jcenter()
+  flatDir{
+      dirs '../app/src/main/aar'
+   }
+}
+```
 
 ## Track Push Notifications
 1.  Paste the following code inside the application:didFinishLaunchingWithOptions: function.
