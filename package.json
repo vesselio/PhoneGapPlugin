@@ -1,6 +1,6 @@
 {
   "name": "MarketoPlugin",
-  "version": "0.7.6",
+  "version": "0.7.7",
   "description": "Marketo plugin",
   "cordova": {
     "id": "com.marketo.plugin",
