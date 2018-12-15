@@ -1,7 +1,7 @@
-repositories{    
+repositories{
   jcenter()
   flatDir{
-      dirs 'aar'
+      dirs '../app/src/main/aar'
    }
 }
 
