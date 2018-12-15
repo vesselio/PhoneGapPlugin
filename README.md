@@ -4,7 +4,6 @@ The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).
 
 ## Plugin Change Log
 
-# Change Log
 v0.7.8 (Dec 10, 2018)
 - Added Support for Firebase Cloud Messaging in Android
 - Fixed Bugs
