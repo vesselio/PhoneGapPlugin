@@ -21,6 +21,8 @@ v0.7.5 (January 4, 2018)
 - Minimum supported Cordova CLI version: 7.1.0
 
 ## iOS Change Log
+v0.7.6 (September 4, 2018)
+ - Fixed tap gesture error at In-app
 
 v0.7.5 (September 8, 2017)
 - Fixed build errors and warnings in xCode 9
