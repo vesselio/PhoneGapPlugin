@@ -9,6 +9,7 @@ var config = fs.readFileSync('config.xml').toString();
 var name = utilities.getValue(config, 'name');
 
 var ANDROID_DIR = 'platforms/android';
+var IOS_DIR = 'platforms/ios';
 
 var PLATFORM = {
   ANDROID: {
