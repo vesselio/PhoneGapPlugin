@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Marketo/PhoneGapPlugin.git"
+    "url": "git+https://github.com/olakra/PhoneGapPlugin.git"
   },
   "keywords": [
     "phonegap",
