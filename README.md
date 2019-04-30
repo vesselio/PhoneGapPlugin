@@ -156,6 +156,19 @@ repositories{
 }
 ```
 
+## Firebase Cloud Messaging (FCM) Support
+1. Configure Firebase App on Firebase Console.
+    - Create/Add a Project on Firebase Console.
+        - In the Firebase console, select Add Project.
+        - Select your GCM project from the list of existing Google Cloud projects, and select Add Firebase.
+        - In the Firebase welcome screen, select Add Firebase to your Android App.
+        - Provide your package name and SHA-1, and select Add App. A new google-services.json file for your Firebase app is downloaded.
+    - Navigate to ‘Project Settings’ in Project Overview
+        - Click on ‘General’ tab. Download the ‘google-services.json’ file.
+        - Click on ‘Cloud Messaging’ tab. Copy ‘Server Key’ & ‘Sender ID’. Provide these ‘Server Key’ & ‘Sender ID’ to Marketo.
+    - Configure FCM changes in Phonegap App
+        - Move the downloaded ‘google-services.json’ file into your Phonegap app module root directory
+
 ## Track Push Notifications
 1.  Paste the following code inside the application:didFinishLaunchingWithOptions: function.
 
