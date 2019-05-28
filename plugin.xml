@@ -49,8 +49,6 @@
 
   <!-- your configuration elements, references, source files, etc... -->
    <framework src="src/android/Marketo.gradle" custom="true" type="gradleReference" />
-    <framework src="com.google.firebase:firebase-core:16.0.8" type="gradleReference"/>
-    <framework src="com.google.firebase:firebase-messaging:17.5.0" type="gradleReference"/>
    <resource-file src="aar/MarketoRelease.aar" target="aar/MarketoRelease.aar"/>
 
   <source-file src="src/android/MarketoPlugin.java" target-dir="src/com/marketo/plugin" />
