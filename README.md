@@ -4,6 +4,10 @@ The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).
 
 ## Plugin Change Log
 
+v0.7.9 (June 01, 2019)
+- Added support for Cordova 9.0.0 & Android 8.0.0
+- Fixed Bugs
+
 v0.7.8 (Dec 10, 2018)
 - Added Support for Firebase Cloud Messaging in Android
 - Fixed Bugs
@@ -148,13 +152,26 @@ This will add Marketo Plugin into your phonegap application.
 Once the Cordova Android platform is built, open the app with Android Studio and update the dirs value of the -Marketo.gradle file found in the com.marketo.plugin folder.
 
 ```javascript
-repositories{    
+repositories{
   jcenter()
   flatDir{
       dirs '../app/src/main/aar'
    }
 }
 ```
+
+## Firebase Cloud Messaging (FCM) Support
+1. Configure Firebase App on Firebase Console.
+    - Create/Add a Project on Firebase Console.
+        - In the Firebase console, select Add Project.
+        - Select your GCM project from the list of existing Google Cloud projects, and select Add Firebase.
+        - In the Firebase welcome screen, select Add Firebase to your Android App.
+        - Provide your package name and SHA-1, and select Add App. A new google-services.json file for your Firebase app is downloaded.
+    - Navigate to ‘Project Settings’ in Project Overview
+        - Click on ‘General’ tab. Download the ‘google-services.json’ file.
+        - Click on ‘Cloud Messaging’ tab. Copy ‘Server Key’ & ‘Sender ID’. Provide these ‘Server Key’ & ‘Sender ID’ to Marketo.
+    - Configure FCM changes in Phonegap App
+        - Move the downloaded ‘google-services.json’ file into your Phonegap app module root directory
 
 ## Track Push Notifications
 1.  Paste the following code inside the application:didFinishLaunchingWithOptions: function.
