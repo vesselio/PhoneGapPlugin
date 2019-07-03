@@ -4,6 +4,10 @@ The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).
 
 ## Plugin Change Log
 
+v0.7.9 (June 01, 2019)
+- Added support for Cordova 9.0.0 & Android 8.0.0
+- Fixed Bugs
+
 v0.7.8 (Dec 10, 2018)
 - Added Support for Firebase Cloud Messaging in Android
 - Fixed Bugs
@@ -148,7 +152,7 @@ This will add Marketo Plugin into your phonegap application.
 Once the Cordova Android platform is built, open the app with Android Studio and update the dirs value of the -Marketo.gradle file found in the com.marketo.plugin folder.
 
 ```javascript
-repositories{    
+repositories{
   jcenter()
   flatDir{
       dirs '../app/src/main/aar'
