@@ -2,47 +2,111 @@
 
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         id="com.marketo.plugin"
-        version="0.1.0">
+        version="0.7.8">
  <name>MarketoPlugin</name>
  <description>Marketo plugin</description>
  <license>Apache</license>
  <keywords>phonegap, Marketo</keywords>
+ <preference name="APPLICATION_SECRET_KEY"/>
 
-<js-module src="www/Marketo.js" name="MarketoPlugin">
+<js-module src="www/marketo.js" name="MarketoPlugin">
   <clobbers target="window.marketo" />
 </js-module>
 
 <!-- android -->
 <platform name="android">
+  <hook type="after_plugin_install" src="scripts/android/after_plugin_install.js" />
+  <hook type="before_plugin_uninstall" src="scripts/android/before_plugin_uninstall.js" />
+  <info>
+    1.We are using application secret key ='$APPLICATION_SECRET_KEY' to configure your Marketo PhoneGap plugin for Android.
+    2.Adding Marketo Activity, Marketo Boradcast Receiver.
+    3.Adding required permission for push notification.
+  </info>
+
+  <config-file target="AndroidManifest.xml" parent="/manifest">
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+  </config-file>
+
+  <config-file target="AndroidManifest.xml" parent="/manifest/application">
+    <activity android:name="com.marketo.MarketoActivity" android:configChanges="orientation|screenSize">
+      <intent-filter android:label="MarketoActivity">
+        <action android:name="android.intent.action.VIEW"/>
+        <category android:name="android.intent.category.DEFAULT"/>
+        <category android:name="android.intent.category.BROWSABLE"/>
+        <data android:scheme="mkto" android:host="add_test_device"/>
+      </intent-filter>
+    </activity>
+  </config-file>
+
   <config-file target="res/xml/config.xml" parent="/*">
     <feature name="MarketoPlugin">
       <param name="android-package" value="com.marketo.plugin.MarketoPlugin"/>
     </feature>
   </config-file>
 
+  <!-- your configuration elements, references, source files, etc... -->
+   <framework src="src/android/Marketo.gradle" custom="true" type="gradleReference" />
+   <framework src="com.google.android.gms:play-services-tagmanager:+" type="gradleReference"/>
+   <framework src="com.google.firebase:firebase-core:+" type="gradleReference"/>
+   <framework src="com.google.firebase:firebase-messaging:+" type="gradleReference"/>
+   <framework src="com.google.firebase:firebase-config:+" type="gradleReference"/>
+   <framework src="com.google.firebase:firebase-perf:+" type="gradleReference"/>
+   <resource-file src="aar/MarketoRelease.aar" target="aar/MarketoRelease.aar"/>
+
   <source-file src="src/android/MarketoPlugin.java" target-dir="src/com/marketo/plugin" />
   <info>
-    Register your application at Marketo.com for further documentation.
+    Successfully added Marketo PhoneGap Plugin.
   </info>
+
 </platform>
 
 <!-- ios -->
-
 <platform name="ios">
   <config-file target="config.xml" parent="/*">
     <feature name="MarketoPlugin">
       <param name="ios-package" value="MarketoPlugin"/>
     </feature>
   </config-file>
-  <framework src="libsqlite3.dylib" />
-  <framework src="libs/ios/Marketo.framework" />
 
+  <!-- for test devices add this -->
+  <config-file target="*-Info.plist" parent="CFBundleURLTypes">
+    <array>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>mkto-$APPLICATION_SECRET_KEY</string>
+        </array>
+      </dict>
+    </array>
+  </config-file>
 
   <header-file src="src/ios/MarketoPlugin.h"/>
   <source-file src="src/ios/MarketoPlugin.m"/>
-  <info>
-    Register your application at Marketo.com for further documentation.
-  </info>
-</platform>
 
+
+<source-file src="src/ios/AppDelegate+Marketo.m" />
+<header-file src="src/ios/AppDelegate+Marketo.h" />
+
+
+
+  <!-- system frameworks -->
+  <framework src="libsqlite3.dylib" />
+
+  <!-- Marketo framework -->
+  <framework src="framework/Marketo.framework" custom="true" />
+  <framework src="framework/UserNotifications.framework" custom="false" />
+
+  <resource-file src="framework/MKTResources.bundle"/>
+
+  <info>
+      1. We are using application secret key ='$APPLICATION_SECRET_KEY' to configure your Marketo PhoneGap plugin for iOS.
+      2. Adding new URL schedule to handle test devices registration.
+      3. Successfully added Marketo PhoneGap Plugin for iOS.
+  </info>
+
+</platform>
+<hook type="after_prepare" src="scripts/after_prepare.js" />
 </plugin>
