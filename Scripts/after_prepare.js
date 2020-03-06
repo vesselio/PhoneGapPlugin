@@ -29,10 +29,6 @@ module.exports = function (context) {
   //get platform from the context supplied by cordova
   var platforms = context.opts.platforms;
   // Copy key files to their platform specific folders
-  if (platforms.indexOf('ios') !== -1 && utilities.directoryExists(IOS_DIR)) {
-    console.log('Preparing Firebase on iOS');
-    utilities.copyKey(PLATFORM.IOS);
-  }
   if (platforms.indexOf('android') !== -1 && utilities.directoryExists(ANDROID_DIR)) {
     console.log('Preparing Firebase on Android');
     utilities.copyKey(PLATFORM.ANDROID);
