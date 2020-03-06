@@ -82,6 +82,12 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
 //    completionHandler();
 }
 
+//  Unlike the application:didReceiveRemoteNotification: method, which is called only when your app is running in the foreground, the system calls this method when your app is running in the foreground or background. 
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler{
+    [[Marketo sharedInstance] handlePushNotification:userInfo];
+}
+
 #endif
 
 
