@@ -1,6 +1,6 @@
 {
   "name": "MarketoPlugin",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Marketo plugin",
   "cordova": {
     "id": "com.marketo.plugin",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Marketo/PhoneGapPlugin-Debug.git"
+    "url": "git+https://github.com/Marketo/PhoneGapPlugin.git"
   },
   "keywords": [
     "phonegap",
@@ -23,7 +23,7 @@
   "author": "Rudy Gomez",
   "license": "Apache",
   "bugs": {
-    "url": "https://github.com/Marketo/PhoneGapPlugin-Debug/issues"
+    "url": "https://github.com/Marketo/PhoneGapPlugin/issues"
   },
-  "homepage": "https://github.com/Marketo/PhoneGapPlugin-Debug#readme"
+  "homepage": "https://github.com/Marketo/PhoneGapPlugin#readme"
 }

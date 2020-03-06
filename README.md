@@ -4,6 +4,9 @@ The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).
 
 ## Plugin Change Log
 
+v0.8.1 (March 06, 2020)
+- Fixed Bugs and enhancements
+
 v0.8.0 (July 19, 2019)
 - Fixed Bugs
 
@@ -28,7 +31,7 @@ v0.7.5 (January 4, 2018)
 - Minimum supported Cordova CLI version: 7.1.0
 
 ## iOS Change Log
-v0.7.7 (March 3, 2020)
+v0.7.7 (March 6, 2020)
 - Fixed Tap Activities that are Not Being Recorded
 - Removed IOS_DIR as iOS doesn't support firebase
 
