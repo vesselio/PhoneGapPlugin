@@ -20,7 +20,7 @@
     "cordova-android",
     "cordova-ios"
   ],
-  "author": "Rudy Gomez",
+  "author": "Marketo Inc, an Adobe company",
   "license": "Apache",
   "bugs": {
     "url": "https://github.com/Marketo/PhoneGapPlugin/issues"
