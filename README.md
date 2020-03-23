@@ -74,6 +74,28 @@ v0.5.0
 
 ## Android Change Log
 
+v0.8.2 (March 23, 2020)
+- Added Android https TLSv1.3 compliance
+
+v0.8.1 (Jul 18, 2019)
+- Fixed Bugs
+
+v0.8.0 (Mar 26, 2019)
+- Fixed Bugs
+
+v0.7.9 (Mar 04, 2019)
+- FCM changes to support custom Marketo Push Notification Receiver
+- Configured Push Notification Channel Name.
+- Fixed Bugs
+
+v0.7.8 (Dec 10, 2018)
+- Added Support for Firebase Cloud Messaging
+- Fixed Bugs
+
+v0.7.7 (May 25, 2018)
+- Added Support for Android API Level P (28)
+- Fixed Bugs
+
 v0.7.6 (January 18, 2018)
 - Added support for Android API Levels 26 and 27
 - Using Android Activity Lifecycle Callbacks
