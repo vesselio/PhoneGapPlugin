@@ -3,6 +3,9 @@
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).
 
 ## Plugin Change Log
+v0.8.4 (March 22, 2021)
+- Fixed Bugs 
+
 v0.8.2 (March 16, 2020)
 - Fixed Bugs 
 
