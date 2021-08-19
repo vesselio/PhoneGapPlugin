@@ -36,6 +36,9 @@ v0.7.5 (January 4, 2018)
 - Minimum supported Cordova CLI version: 7.1.0
 
 ## iOS Change Log
+v0.7.9 (August 19, 2021)
+- Bug fixes & enhancements.
+
 v0.7.8 (March 16, 2020)
 - Fixed unregistering push token issue.
 
